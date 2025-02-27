@@ -1,1 +1,123 @@
-f
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearhos Hatzinikolaou | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('background.jpg') no-repeat center center/cover;
+        }
+        .hero h1 {
+            font-size: 3em;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+        .section {
+            padding: 100px 50px;
+            text-align: center;
+        }
+        .projects-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: left;
+        }
+        .model-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <section class="hero">
+        <h1>Nearhos Hatzinikolaou</h1>
+    </section>
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <p>Electrical & Electronics Engineer passionate about firmware, AI, and innovation.</p>
+    </section>
+    <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">Helping Hand - AI-assisted Braille output</div>
+            <div class="project-card">Lead2LED - Accelerometer-powered LED Control</div>
+            <div class="project-card">Epilepsee - Seizure Predictor</div>
+        </div>
+    </section>
+    <section id="experience" class="section">
+        <h2>Experience</h2>
+        <p>Firmware Engineer Intern @ Ziddy Makes - Summer 2024</p>
+    </section>
+    <section id="skills" class="section">
+        <h2>Skills</h2>
+        <p>Python, Java, C++, ESP32, React.js, TensorFlow...</p>
+    </section>
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p>Email: nearhos.hatzinikolaou22@gmail.com</p>
+    </section>
+    <section id="raspberry-pi" class="section">
+        <h2>Raspberry Pi 3D Model</h2>
+        <div class="model-container">
+            <model-viewer src="raspberrypi.glb" alt="3D Model of Raspberry Pi" auto-rotate camera-controls></model-viewer>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/@google/model-viewer@latest/dist/model-viewer.min.js"></script>
+    <script>
+        document.addEventListener("scroll", () => {
+            document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
+        });
+    </script>
+</body>
+</html>
