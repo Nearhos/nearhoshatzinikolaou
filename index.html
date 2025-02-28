@@ -12,7 +12,7 @@
             padding: 0;
             background-color: #000;
             color: #fff;
-            font-family: 'Poppins', sans-serif;
+            font-family: "Courier New", Courier, monospace;
             overflow-x: hidden;
         }
         .hero {
@@ -23,12 +23,6 @@
             justify-content: center;
             text-align: center;
             background: url('background.jpg') no-repeat center center/cover;
-        }
-        .hero h1 {
-            font-size: 3em;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 2px;
         }
         .nav {
             display: flex;
@@ -61,6 +55,7 @@
             border-radius: 10px;
             width: 300px;
             text-align: left;
+            overflow: hidden;
         }
         .model-container {
             display: flex;
@@ -68,20 +63,33 @@
             align-items: center;
             height: 700px;
         }
-        canvas {
-            width: 100%;
-            height: 100%;
-        }
         model-viewer {
             width: 80%;
             height: 100%;
         }
         #about img {
-            width: 50%; /* Matches the text width dynamically */
-            max-width: 600px; /* Prevents it from being too large */
+            width: 50%;
+            max-width: 600px;
             border-radius: 20px;
             display: block;
             margin: 20px auto;
+        }
+
+        /* Typing Animation */
+        .typing {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #fff;
+            display: inline-block;
+            animation: typing 2s steps(30, end) forwards, blink 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #fff; }
         }
     </style>
 </head>
@@ -94,47 +102,68 @@
         <a href="#contact">Contact</a>
     </nav>
     <section id="about" class="section">
-        <h1>Nearhos Hatzinikolaou</h1>
+        <h1 class="type-effect">Nearhos Hatzinikolaou</h1>
         <img src="1732488187230.jpg" alt="Profile Picture">
-        <h2>About Me</h2>
-        <p>Hello, I am an Electrical & Electronics Engineering student at Toronto Metropolitan University who is passionate about firmware, robotics, data science, and neurotechnology!</p>
-        <p>This site is a personal portfolio containing all my past projects. I hope you find them as interesting as I did!</p>
+        <h2 class="type-effect">About Me</h2>
+        <p class="type-effect">Hello, I am an Electrical & Electronics Engineering student at Toronto Metropolitan University who is passionate about firmware, robotics, data science, and neurotechnology!</p>
+        <p class="type-effect">This site is a personal portfolio containing all my past projects. I hope you find them as interesting as I did!</p>
     </section>
     <div class="model-container">
-        <h2>Firmware Projects</h2>
-        <model-viewer src="raspberry_pi_3.glb" 
-            auto-rotate 
-            camera-controls>
-        </model-viewer>
+        <h2 class="type-effect">Firmware Projects</h2>
+        <model-viewer src="raspberry_pi_3.glb" auto-rotate camera-controls></model-viewer>
     </div>
     <section id="projects" class="section">
-        <h2>Projects</h2>
+        <h2 class="type-effect">Projects</h2>
         <div class="projects-grid">
-            <div class="project-card">Helping Hand - AI-assisted Braille output</div>
-            <div class="project-card">Lead2LED - Accelerometer-powered LED Control</div>
-            <div class="project-card">Epilepsee - Seizure Predictor</div>
+            <div class="project-card type-effect">Helping Hand - AI-assisted Braille output</div>
+            <div class="project-card type-effect">Lead2LED - Accelerometer-powered LED Control</div>
+            <div class="project-card type-effect">Epilepsee - Seizure Predictor</div>
         </div>
     </section>
     <section id="experience" class="section">
-        <h2>Experience</h2>
-        <p>Firmware Engineer Intern @ Ziddy Makes - Summer 2024</p>
+        <h2 class="type-effect">Experience</h2>
+        <p class="type-effect">Firmware Engineer Intern @ Ziddy Makes - Summer 2024</p>
     </section>
     <section id="skills" class="section">
-        <h2>Skills</h2>
-        <p>Python, Java, C++, ESP32, React.js, TensorFlow...</p>
+        <h2 class="type-effect">Skills</h2>
+        <p class="type-effect">Python, Java, C++, ESP32, React.js, TensorFlow...</p>
     </section>
     <section id="contact" class="section">
-        <h2>Contact</h2>
-        <p>Email: nearhos.hatzinikolaou22@gmail.com</p>
+        <h2 class="type-effect">Contact</h2>
+        <p class="type-effect">Email: nearhos.hatzinikolaou22@gmail.com</p>
     </section>
+    
     <script type="module" src="https://unpkg.com/@google/model-viewer@latest/dist/model-viewer.min.js"></script>
     <script>
         document.addEventListener("scroll", () => {
             document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
         });
+
+        // Apply the typing effect only once
+        document.addEventListener("DOMContentLoaded", () => {
+            let elements = document.querySelectorAll(".type-effect");
+            elements.forEach((el) => {
+                let text = el.textContent;
+                el.innerHTML = "";
+                let span = document.createElement("span");
+                span.classList.add("typing");
+                el.appendChild(span);
+                let i = 0;
+                let typingInterval = setInterval(() => {
+                    if (i < text.length) {
+                        span.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typingInterval);
+                        span.style.borderRight = "none"; // Remove blinking cursor after typing
+                    }
+                }, 50);
+            });
+        });
     </script>
 </body>
 </html>
+
 
 
 
