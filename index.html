@@ -147,32 +147,45 @@
         document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
     });
 
-    document.addEventListener("DOMContentLoaded", () => {
-        let elements = document.querySelectorAll(".type-effect");
+  document.addEventListener("scroll", () => {
+    document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
+});
 
-        elements.forEach((el) => {
-            // Apply typing effect only to specific elements (e.g., the heading and "About Me" paragraph)
-            if (el.tagName === "H1" || el.tagName === "H2" || el.id === "about-text") {
-                let text = el.innerHTML;  // Preserve <br> tags
-                el.innerHTML = ""; // Clear only for these elements
+document.addEventListener("DOMContentLoaded", () => {
+    let elements = document.querySelectorAll(".type-effect");
 
-                let span = document.createElement("span");
-                span.classList.add("typing");
-                el.appendChild(span);
+    elements.forEach((el) => {
+        if (el.tagName === "H1" || el.tagName === "H2" || el.id === "about-text") {
+            let text = el.innerHTML;  // Preserve <br> tags
+            el.innerHTML = ""; // Clear only for these elements
 
-                let i = 0;
-                let typingInterval = setInterval(() => {
-                    if (i < text.length) {
-                        span.innerHTML += text.charAt(i);
-                        i++;
+            let span = document.createElement("span");
+            span.classList.add("typing");
+            el.appendChild(span);
+
+            let i = 0;
+            let typingInterval = setInterval(() => {
+                if (i < text.length) {
+                    // Ensuring <br> is properly rendered
+                    if (text[i] === "<") {
+                        let endIndex = text.indexOf(">", i);
+                        if (endIndex !== -1) {
+                            span.innerHTML += text.substring(i, endIndex + 1);
+                            i = endIndex;
+                        }
                     } else {
-                        clearInterval(typingInterval);
-                        span.style.borderRight = "none"; // Remove blinking cursor after typing
+                        span.innerHTML += text[i];
                     }
-                }, 50);
-            }
-        });
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                    span.style.borderRight = "none"; // Remove blinking cursor after typing
+                }
+            }, 50);
+        }
     });
+});
+
 </script>
 
 </body>
