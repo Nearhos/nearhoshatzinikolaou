@@ -105,13 +105,14 @@
         <h1 class="type-effect">Nearhos Hatzinikolaou</h1>
         <img src="1732488187230.jpg" alt="Profile Picture">
         <h2 class="type-effect">About Me</h2>
-        <p class="type-effect">
-        Hello, I am an Electrical & Electronics Engineering student at Toronto Metropolitan University. 
-        <br><br>
-        I have worked on firmware, robotics, data science and Machine learning, and neurotechnology! 
-        <br><br>
-        This site is a personal portfolio containing all my past projects. I hope you find them as interesting as I did!
-        </p>
+       <p id="about-text" class="type-effect">
+       Hello, I am an Electrical & Electronics Engineering student at Toronto Metropolitan University. 
+       <br><br>
+       I have worked on firmware, robotics, data science and Machine learning, and neurotechnology! 
+       <br><br>
+       This site is a personal portfolio containing all my past projects. I hope you find them as interesting as I did!
+       </p>
+
 
       
     </section>
@@ -141,33 +142,39 @@
     </section>
     
     <script type="module" src="https://unpkg.com/@google/model-viewer@latest/dist/model-viewer.min.js"></script>
-    <script>
-        document.addEventListener("scroll", () => {
-            document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
-        });
+<script>
+    document.addEventListener("scroll", () => {
+        document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
+    });
 
-        // Apply the typing effect only once
-        document.addEventListener("DOMContentLoaded", () => {
-            let elements = document.querySelectorAll(".type-effect");
-            elements.forEach((el) => {
-                let text = el.textContent;
-                el.innerHTML = "";
+    document.addEventListener("DOMContentLoaded", () => {
+        let elements = document.querySelectorAll(".type-effect");
+
+        elements.forEach((el) => {
+            // Apply typing effect only to specific elements (e.g., the heading and "About Me" paragraph)
+            if (el.tagName === "H1" || el.tagName === "H2" || el.id === "about-text") {
+                let text = el.innerHTML;  // Preserve <br> tags
+                el.innerHTML = ""; // Clear only for these elements
+
                 let span = document.createElement("span");
                 span.classList.add("typing");
                 el.appendChild(span);
+
                 let i = 0;
                 let typingInterval = setInterval(() => {
                     if (i < text.length) {
-                        span.textContent += text.charAt(i);
+                        span.innerHTML += text.charAt(i);
                         i++;
                     } else {
                         clearInterval(typingInterval);
                         span.style.borderRight = "none"; // Remove blinking cursor after typing
                     }
                 }, 50);
-            });
+            }
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
 
