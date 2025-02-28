@@ -30,12 +30,6 @@
             font-weight: 700;
             letter-spacing: 2px;
         }
-        .hero img {
-            width: 300px;
-            height: auto;
-            border-radius: 20px;
-            margin-top: 20px;
-        }
         .nav {
             display: flex;
             justify-content: center;
@@ -82,11 +76,18 @@
             width: 80%;
             height: 100%;
         }
+        #about img {
+            width: 50%; /* Matches the text width dynamically */
+            max-width: 600px; /* Prevents it from being too large */
+            border-radius: 20px;
+            display: block;
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
     <nav class="nav">
-        <a href="#about">About Me.</a>
+        <a href="#about">About Me</a>
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
@@ -94,18 +95,18 @@
     </nav>
     <section id="about" class="section">
         <h1>Nearhos Hatzinikolaou</h1>
-        <img src="1732488187230.jpg">
-        <h2>About Me.</h2>
-        <p>Hello, I am an Electrical & Electronics Engineering student Toronto Metropolitan Universty who is passionate about firmware, Robotics, Data Science, and Nuerotechnology!</p>
-        <p>This site is personal portfolio containg all my past projects, I hope you find them as Interesting as I did!</p>
-        </section>
-        <div class="model-container">
-            <h2>Firmware Projects</h2>
-           <model-viewer src="raspberry_pi_3.glb" 
-              auto-rotate 
-              camera-controls></model-viewer>
-        </div>
+        <img src="1732488187230.jpg" alt="Profile Picture">
+        <h2>About Me</h2>
+        <p>Hello, I am an Electrical & Electronics Engineering student at Toronto Metropolitan University who is passionate about firmware, robotics, data science, and neurotechnology!</p>
+        <p>This site is a personal portfolio containing all my past projects. I hope you find them as interesting as I did!</p>
     </section>
+    <div class="model-container">
+        <h2>Firmware Projects</h2>
+        <model-viewer src="raspberry_pi_3.glb" 
+            auto-rotate 
+            camera-controls>
+        </model-viewer>
+    </div>
     <section id="projects" class="section">
         <h2>Projects</h2>
         <div class="projects-grid">
@@ -134,6 +135,7 @@
     </script>
 </body>
 </html>
+
 
 
 
