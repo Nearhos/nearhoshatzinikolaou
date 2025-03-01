@@ -15,14 +15,13 @@
             font-family: "Courier New", Courier, monospace;
             overflow-x: hidden;
         }
-        .hero {
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: url('background.jpg') no-repeat center center/cover;
+            z-index: -1;
         }
         .nav {
             display: flex;
@@ -33,6 +32,7 @@
             width: 100%;
             top: 0;
             background: rgba(0, 0, 0, 0.8);
+            z-index: 10;
         }
         .nav a {
             color: #fff;
@@ -43,57 +43,16 @@
         .section {
             padding: 100px 50px;
             text-align: center;
-        }
-        .projects-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .project-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
-            text-align: left;
-            overflow: hidden;
-        }
-        .model-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 700px;
-        }
-        model-viewer {
-            width: 80%;
-            height: 100%;
-        }
-        #about img {
-            width: 50%;
-            max-width: 600px;
-            border-radius: 20px;
-            display: block;
-            margin: 20px auto;
-        }
-
-        /* Typing Animation */
-        .typing {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid #fff;
-            display: inline-block;
-            animation: typing 2s steps(30, end) forwards, blink 0.75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink {
-            from, to { border-color: transparent; }
-            50% { border-color: #fff; }
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
+    <div class="background-container">
+        <model-viewer src="star_cluster_-_15k_stars_model.glb" auto-rotate camera-controls></model-viewer>
+    </div>
+    
     <nav class="nav">
         <a href="#about">About Me</a>
         <a href="#projects">Projects</a>
@@ -101,115 +60,17 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
     </nav>
+    
     <section id="about" class="section">
-        <h1 class="type-effect">Nearhos Hatzinikolaou</h1>
+        <h1>Nearhos Hatzinikolaou</h1>
         <img src="1732488187230.jpg" alt="Profile Picture">
-        <h2 class="type-effect">About Me</h2>
-    <p id="about-text" class="type-effect">
-    Hello, I am an Electrical Engineering student at Toronto Metropolitan University. 
-    <br><br>
-    I have worked on firmware, robotics, data science and Machine learning, and neurotechnology! 
-    <br><br>
-    This site is a personal portfolio containing all my past projects. I hope you find them as interesting as I did!
-</p>
-
-
-      
-    </section>
-    <section id="projects" class="section">
-        <h2 class="type-effect">Projects</h2>
-          <div class="model-container">
-        <h2 class="type-effect">Firmware Projects</h2>
-        <model-viewer src="raspberry_pi_3.glb" auto-rotate camera-controls></model-viewer>
-    </div>  
-        <div class="model-container">
-               <h2 class="type-effect">Data Science and ML Projects</h2>
-        <model-viewer src="sombrero_-_superficie_math.glb" auto-rotate camera-controls></model-viewer>
-    </div>
-        <div class="model-container">
-               <h2 class="type-effect">Robotics Projects</h2>
-        <model-viewer src="industrial_robotic_arm.glb" auto-rotate camera-controls></model-viewer>
-    </div>
-    <div class="model-container">
-        <h2 class="type-effect">Nuerotech and Biomedical Projects</h2>
-        <model-viewer src="brain_project.glb" auto-rotate camera-controls></model-viewer>
-    </div>
-        <h2 class="type-effect">All Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card type-effect">Helping Hand - AI-assisted Braille output</div>
-            <div class="project-card type-effect">Lead2LED - Accelerometer-powered LED Control</div>
-            <div class="project-card type-effect">Epilepsee - Seizure Predictor</div>
-        </div>
-    </section>
-    <section id="experience" class="section">
-        <h2 class="type-effect">Experience</h2>
-        <p class="type-effect">Firmware Engineer Intern @ Ziddy Makes - Summer 2024</p>
-    </section>
-    <section id="skills" class="section">
-        <h2 class="type-effect">Skills</h2>
-        <p class="type-effect"> Languages: Java, SQL, Python, MatLab, CSS, C++, PlatformIO and JavaScript
- <br><br>
- Frameworks: React.js, Linux, QGIS Software, Powershell, Node.js, Bootstrap, Bash, Tailwind, and Express.js
- <br><br>
- Hardware Tools: ESP-32, Arduino, Multisim and Altium Software, VHDL, Verilog
- <br><br>
- Libraries: Pandas, Keras, NumPy, and Matplotlib, Scikit Learn, Seaborn, and Tensorflow </p>
-    </section>
-    <section id="contact" class="section">
-        <h2 class="type-effect">Contact</h2>
-        <p class="type-effect">Email: nearhos.hatzinikolaou22@gmail.com</p>
+        <h2>About Me</h2>
+        <p>Hello, I am an Electrical Engineering student at Toronto Metropolitan University.</p>
     </section>
     
     <script type="module" src="https://unpkg.com/@google/model-viewer@latest/dist/model-viewer.min.js"></script>
-<script>
-    document.addEventListener("scroll", () => {
-        document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
-    });
-
-  document.addEventListener("scroll", () => {
-    document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    let elements = document.querySelectorAll(".type-effect");
-
-    elements.forEach((el) => {
-        if (el.tagName === "H1" || el.tagName === "H2" || el.id === "about-text") {
-            let text = el.innerHTML;  // Preserve <br> tags
-            el.innerHTML = ""; // Clear only for these elements
-
-            let span = document.createElement("span");
-            span.classList.add("typing");
-            el.appendChild(span);
-
-            let i = 0;
-            let typingInterval = setInterval(() => {
-                if (i < text.length) {
-                    // Ensuring <br> is properly rendered
-                    if (text[i] === "<") {
-                        let endIndex = text.indexOf(">", i);
-                        if (endIndex !== -1) {
-                            span.innerHTML += text.substring(i, endIndex + 1);
-                            i = endIndex;
-                        }
-                    } else {
-                        span.innerHTML += text[i];
-                    }
-                    i++;
-                } else {
-                    clearInterval(typingInterval);
-                    span.style.borderRight = "none"; // Remove blinking cursor after typing
-                }
-            }, 50);
-        }
-    });
-});
-
-</script>
-
 </body>
 </html>
-
 
 
 
