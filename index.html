@@ -10,10 +10,10 @@
         body {
             margin: 0;
             padding: 0;
+            background-color: #000;
             color: #fff;
             font-family: "Courier New", Courier, monospace;
             overflow-x: hidden;
-            position: relative;
         }
         .hero {
             height: 100vh;
@@ -33,7 +33,6 @@
             width: 100%;
             top: 0;
             background: rgba(0, 0, 0, 0.8);
-            z-index: 1000; /* Ensure navbar is above the background */
         }
         .nav a {
             color: #fff;
@@ -44,8 +43,6 @@
         .section {
             padding: 100px 50px;
             text-align: center;
-            position: relative;
-            z-index: 1; /* Ensure content is above the background */
         }
         .projects-grid {
             display: flex;
@@ -94,20 +91,9 @@
             from, to { border-color: transparent; }
             50% { border-color: #fff; }
         }
-
-        /* Background GLB */
-        #background-model {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Ensure it's behind everything */
-        }
     </style>
 </head>
 <body>
-    <model-viewer id="background-model" src="star_cluster_-_15k_stars_model.glb" auto-rotate camera-controls></model-viewer>
     <nav class="nav">
         <a href="#about">About Me</a>
         <a href="#projects">Projects</a>
@@ -119,32 +105,35 @@
         <h1 class="type-effect">Nearhos Hatzinikolaou</h1>
         <img src="1732488187230.jpg" alt="Profile Picture">
         <h2 class="type-effect">About Me</h2>
-        <p id="about-text" class="type-effect">
-            Hello, I am an Electrical Engineering student at Toronto Metropolitan University. 
-            <br><br>
-            I have worked on firmware, robotics, data science and Machine learning, and neurotechnology! 
-            <br><br>
-            This site is a personal portfolio containing all my past projects. I hope you find them as interesting as I did!
-        </p>
+    <p id="about-text" class="type-effect">
+    Hello, I am an Electrical Engineering student at Toronto Metropolitan University. 
+    <br><br>
+    I have worked on firmware, robotics, data science and Machine learning, and neurotechnology! 
+    <br><br>
+    This site is a personal portfolio containing all my past projects. I hope you find them as interesting as I did!
+</p>
+
+
+      
     </section>
     <section id="projects" class="section">
         <h2 class="type-effect">Projects</h2>
+          <div class="model-container">
+        <h2 class="type-effect">Firmware Projects</h2>
+        <model-viewer src="raspberry_pi_3.glb" auto-rotate camera-controls></model-viewer>
+    </div>  
         <div class="model-container">
-            <h2 class="type-effect">Firmware Projects</h2>
-            <model-viewer src="raspberry_pi_3.glb" auto-rotate camera-controls></model-viewer>
-        </div>  
+               <h2 class="type-effect">Data Science and ML Projects</h2>
+        <model-viewer src="sombrero_-_superficie_math.glb" auto-rotate camera-controls></model-viewer>
+    </div>
         <div class="model-container">
-            <h2 class="type-effect">Data Science and ML Projects</h2>
-            <model-viewer src="sombrero_-_superficie_math.glb" auto-rotate camera-controls></model-viewer>
-        </div>
-        <div class="model-container">
-            <h2 class="type-effect">Robotics Projects</h2>
-            <model-viewer src="industrial_robotic_arm.glb" auto-rotate camera-controls></model-viewer>
-        </div>
-        <div class="model-container">
-            <h2 class="type-effect">Nuerotech and Biomedical Projects</h2>
-            <model-viewer src="brain_project.glb" auto-rotate camera-controls></model-viewer>
-        </div>
+               <h2 class="type-effect">Robotics Projects</h2>
+        <model-viewer src="industrial_robotic_arm.glb" auto-rotate camera-controls></model-viewer>
+    </div>
+    <div class="model-container">
+        <h2 class="type-effect">Nuerotech and Biomedical Projects</h2>
+        <model-viewer src="brain_project.glb" auto-rotate camera-controls></model-viewer>
+    </div>
         <h2 class="type-effect">All Projects</h2>
         <div class="projects-grid">
             <div class="project-card type-effect">Helping Hand - AI-assisted Braille output</div>
@@ -159,12 +148,12 @@
     <section id="skills" class="section">
         <h2 class="type-effect">Skills</h2>
         <p class="type-effect"> Languages: Java, SQL, Python, MatLab, CSS, C++, PlatformIO and JavaScript
-            <br><br>
-            Frameworks: React.js, Linux, QGIS Software, Powershell, Node.js, Bootstrap, Bash, Tailwind, and Express.js
-            <br><br>
-            Hardware Tools: ESP-32, Arduino, Multisim and Altium Software, VHDL, Verilog
-            <br><br>
-            Libraries: Pandas, Keras, NumPy, and Matplotlib, Scikit Learn, Seaborn, and Tensorflow </p>
+ <br><br>
+ Frameworks: React.js, Linux, QGIS Software, Powershell, Node.js, Bootstrap, Bash, Tailwind, and Express.js
+ <br><br>
+ Hardware Tools: ESP-32, Arduino, Multisim and Altium Software, VHDL, Verilog
+ <br><br>
+ Libraries: Pandas, Keras, NumPy, and Matplotlib, Scikit Learn, Seaborn, and Tensorflow </p>
     </section>
     <section id="contact" class="section">
         <h2 class="type-effect">Contact</h2>
@@ -172,45 +161,51 @@
     </section>
     
     <script type="module" src="https://unpkg.com/@google/model-viewer@latest/dist/model-viewer.min.js"></script>
-    <script>
-        document.addEventListener("scroll", () => {
-            document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
-        });
+<script>
+    document.addEventListener("scroll", () => {
+        document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
+    });
 
-        document.addEventListener("DOMContentLoaded", () => {
-            let elements = document.querySelectorAll(".type-effect");
+  document.addEventListener("scroll", () => {
+    document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
+});
 
-            elements.forEach((el) => {
-                if (el.tagName === "H1" || el.tagName === "H2" || el.id === "about-text") {
-                    let text = el.innerHTML;  // Preserve <br> tags
-                    el.innerHTML = ""; // Clear only for these elements
+document.addEventListener("DOMContentLoaded", () => {
+    let elements = document.querySelectorAll(".type-effect");
 
-                    let span = document.createElement("span");
-                    span.classList.add("typing");
-                    el.appendChild(span);
+    elements.forEach((el) => {
+        if (el.tagName === "H1" || el.tagName === "H2" || el.id === "about-text") {
+            let text = el.innerHTML;  // Preserve <br> tags
+            el.innerHTML = ""; // Clear only for these elements
 
-                    let i = 0;
-                    let typingInterval = setInterval(() => {
-                        if (i < text.length) {
-                            // Ensuring <br> is properly rendered
-                            if (text[i] === "<") {
-                                let endIndex = text.indexOf(">", i);
-                                if (endIndex !== -1) {
-                                    span.innerHTML += text.substring(i, endIndex + 1);
-                                    i = endIndex;
-                                }
-                            } else {
-                                span.innerHTML += text[i];
-                            }
-                            i++;
-                        } else {
-                            clearInterval(typingInterval);
-                            span.style.borderRight = "none"; // Remove blinking cursor after typing
+            let span = document.createElement("span");
+            span.classList.add("typing");
+            el.appendChild(span);
+
+            let i = 0;
+            let typingInterval = setInterval(() => {
+                if (i < text.length) {
+                    // Ensuring <br> is properly rendered
+                    if (text[i] === "<") {
+                        let endIndex = text.indexOf(">", i);
+                        if (endIndex !== -1) {
+                            span.innerHTML += text.substring(i, endIndex + 1);
+                            i = endIndex;
                         }
-                    }, 50);
+                    } else {
+                        span.innerHTML += text[i];
+                    }
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                    span.style.borderRight = "none"; // Remove blinking cursor after typing
                 }
-            });
-        });
-    </script>
+            }, 50);
+        }
+    });
+});
+
+</script>
+
 </body>
 </html>
