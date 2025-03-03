@@ -10,7 +10,11 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #000;
+            background-image: url('1-5fd5c1c2.jpg'); 
+            background-size: cover; /* Ensures the image covers the entire background */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-attachment: fixed; /* Optional: Makes the background fixed during scrolling */
             color: #fff;
             font-family: "Courier New", Courier, monospace;
             overflow-x: hidden;
@@ -22,7 +26,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: url('background.jpg') no-repeat center center/cover;
+            background: rgba(0, 0, 0, 0.5); /* Optional: Adds a dark overlay for better text visibility */
         }
        
         .nav {
@@ -44,6 +48,7 @@
         .section {
             padding: 100px 50px;
             text-align: center;
+            background: rgba(0, 0, 0, 0.7); /* Optional: Adds a dark overlay for better text visibility */
         }
         .projects-grid {
             display: flex;
