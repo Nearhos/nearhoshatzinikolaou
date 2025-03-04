@@ -94,6 +94,99 @@
             display: inline-block;
             animation: typing 2s steps(30, end) forwards, blink 0.75s step-end infinite;
         }
+          .terminal-container {
+            width: 800px;
+            height: 450px;
+            background-color: #2d0922; /* Dark purple background */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Terminal Title Bar */
+        .terminal-title-bar {
+            background-color: #3c3c3c; /* Grey for the title bar */
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            border-bottom: 1px solid #2d2d2d;
+        }
+
+        /* Terminal Buttons */
+        .terminal-buttons {
+            display: flex;
+            gap: 8px;
+            margin-left: auto; /* Push buttons to the right */
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: transparent; /* Hide text */
+        }
+
+        .terminal-button.minimize {
+            background-color: #3c3c3c; /* Grey for minimize button */
+            border: 1px solid #555; /* Add a subtle border */
+        }
+
+        .terminal-button.minimize::before {
+            content: "−"; /* Minimize icon */
+            color: #fff; /* White icon */
+        }
+
+        .terminal-button.maximize {
+            background-color: #3c3c3c; /* Grey for maximize button */
+            border: 1px solid #555; /* Add a subtle border */
+        }
+
+        .terminal-button.maximize::before {
+            content: "□"; /* Maximize icon */
+            color: #fff; /* White icon */
+        }
+
+        .terminal-button.close {
+            background-color: #ff5f56; /* Red for close button */
+        }
+
+        .terminal-button.close::before {
+            content: "×"; /* Close icon */
+            color: #000;
+        }
+
+        /* Terminal Title Text */
+        .terminal-title {
+            position: absolute; /* Center the text */
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            color: #f8f8f2; /* Light gray text */
+            font-size: 14px;
+        }
+
+        /* Terminal Content */
+        .terminal-content {
+            padding: 16px;
+            color: #f8f8f2; /* Light gray text */
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Command Prompt */
+        .terminal-content p {
+            margin: 0;
+        }
+
+        .terminal-content p::before {
+            content: "mark@linux-desktop:/tmp/tutorials$ ";
+            color: #50fa7b; /* Green for the prompt */
+        }
         @keyframes typing {
             from { width: 0; }
             to { width: 100%; }
@@ -124,6 +217,42 @@
             This site is a personal portfolio containing all my past projects. I hope you find them as interesting as I did!
         </p>
     </section>
+     <div class="terminal-container">
+        <!-- Terminal Title Bar -->
+        <div class="terminal-title-bar">
+            <!-- Terminal Buttons -->
+            <div class="terminal-buttons">
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize"></div>
+                <div class="terminal-button close"></div>
+            </div>
+            <!-- Centered Title Text -->
+            <span class="terminal-title">mark@linux-desktop:/tmp/tutorials</span>
+        </div>
+
+        <!-- Terminal Content -->
+        <div class="terminal-content">
+            <p>mv "folder 1" folder_1</p>
+            <p>mv "folder 2" folder_2</p>
+            <p>mv "folder 3" folder_3</p>
+            <p>mv "folder 4" folder_4</p>
+            <p>mv "folder 5" folder_5</p>
+            <p>mv "folder 6" folder_6</p>
+            <p>ls</p>
+            <p>another    dir1 folder    folder_3 folder_6</p>
+            <p>combined_backup.txt dir2 folder_1 folder_4 output.txt</p>
+            <p>combined.txt    dir4 folder_2 folder_5</p>
+            <p>rn dir4/dir5/dir6/combined.txt combined_backup.txt</p>
+            <p>rn folder_*</p>
+            <p>rn: cannot remove 'folder_1': Is a directory</p>
+            <p>rn: cannot remove 'folder_2': Is a directory</p>
+            <p>rn: cannot remove 'folder_3': Is a directory</p>
+            <p>rn: cannot remove 'folder_4': Is a directory</p>
+            <p>rn: cannot remove 'folder_5': Is a directory</p>
+            <p>rn: cannot remove 'folder_6': Is a directory</p>
+        </div>
+    </div>
+
     <section id="projects" class="section">
         <h2 class="type-effect">Projects</h2>
         <div class="model-container">
