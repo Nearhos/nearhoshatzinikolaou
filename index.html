@@ -11,10 +11,10 @@
             margin: 0;
             padding: 0;
             background-image: url('1-5fd5c1c2.jpg'); 
-            background-size: cover; /* Ensures the image covers the entire background */
-            background-position: center; /* Centers the image */
-            background-repeat: no-repeat; /* Prevents the image from repeating */
-            background-attachment: fixed; /* Optional: Makes the background fixed during scrolling */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: #fff;
             font-family: "Courier New", Courier, monospace;
             overflow-x: hidden;
@@ -26,9 +26,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: rgba(0, 0, 0, 0.5); /* Optional: Adds a dark overlay for better text visibility */
+            background: rgba(0, 0, 0, 0.5);
         }
-       
         .nav {
             display: flex;
             justify-content: center;
@@ -48,7 +47,7 @@
         .section {
             padding: 100px 50px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.7); /* Optional: Adds a dark overlay for better text visibility */
+            background: rgba(0, 0, 0, 0.7);
         }
         .projects-grid {
             display: flex;
@@ -80,18 +79,14 @@
             display: block;
             margin: 20px auto;
         }
-              
         .green-link {
-            color: #00ff00; /* Programmer green */
-            text-decoration: none; /* Optional: removes underline */
+            color: #00ff00;
+            text-decoration: none;
         }
-        
         .green-link:hover {
-            color: #33ff33; /* Slightly lighter green on hover */
-            text-decoration: underline; /* Optional: adds underline on hover */
+            color: #33ff33;
+            text-decoration: underline;
         }
-
-        /* Typing Animation */
         .typing {
             overflow: hidden;
             white-space: nowrap;
@@ -107,8 +102,6 @@
             from, to { border-color: transparent; }
             50% { border-color: #fff; }
         }
-   
-      
     </style>
 </head>
 <body>
@@ -123,35 +116,32 @@
         <h1 class="type-effect">Nearhos Hatzinikolaou</h1>
         <img src="1732488187230.jpg" alt="Profile Picture">
         <h2 class="type-effect">About Me</h2>
-    <p id="about-text" class="type-effect">
-    Hello, I am an Electrical Engineering student at Toronto Metropolitan University. 
-    <br><br>
-    I have worked on firmware, robotics, data science and Machine learning, and neurotechnology! 
-    <br><br>
-    This site is a personal portfolio containing all my past projects. I hope you find them as interesting as I did!
-</p>
-
-
-      
+        <p id="about-text" class="type-effect">
+            Hello, I am an Electrical Engineering student at Toronto Metropolitan University. 
+            <br><br>
+            I have worked on firmware, robotics, data science and Machine learning, and neurotechnology! 
+            <br><br>
+            This site is a personal portfolio containing all my past projects. I hope you find them as interesting as I did!
+        </p>
     </section>
     <section id="projects" class="section">
         <h2 class="type-effect">Projects</h2>
-          <div class="model-container">
-        <h2 class="type-effect">Firmware Projects</h2>
-        <model-viewer src="raspberry_pi_3.glb" auto-rotate camera-controls></model-viewer>
-    </div>  
         <div class="model-container">
-               <h2 class="type-effect">Data Science and ML Projects</h2>
-        <model-viewer src="sombrero_-_superficie_math.glb" auto-rotate camera-controls></model-viewer>
-    </div>
+            <h2 class="type-effect">Firmware Projects</h2>
+            <model-viewer src="raspberry_pi_3.glb" auto-rotate camera-controls></model-viewer>
+        </div>  
         <div class="model-container">
-               <h2 class="type-effect">Robotics Projects</h2>
-        <model-viewer src="industrial_robotic_arm.glb" auto-rotate camera-controls></model-viewer>
-    </div>
-    <div class="model-container">
-        <h2 class="type-effect">Nuerotech and Biomedical Projects</h2>
-        <model-viewer src="brain_project.glb" auto-rotate camera-controls></model-viewer>
-    </div>
+            <h2 class="type-effect">Data Science and ML Projects</h2>
+            <model-viewer src="sombrero_-_superficie_math.glb" auto-rotate camera-controls></model-viewer>
+        </div>
+        <div class="model-container">
+            <h2 class="type-effect">Robotics Projects</h2>
+            <model-viewer src="industrial_robotic_arm.glb" auto-rotate camera-controls></model-viewer>
+        </div>
+        <div class="model-container">
+            <h2 class="type-effect">Nuerotech and Biomedical Projects</h2>
+            <model-viewer src="brain_project.glb" auto-rotate camera-controls></model-viewer>
+        </div>
         <h2 class="type-effect">All Projects</h2>
         <div class="projects-grid">
             <div class="project-card type-effect"> <a href="https://github.com/Nearhos/SeeSureAlpha1.0" class="green-link"> Epilepsee - Binary classification using a support vector machine, achieving a 98% accuracy on test set data</a></div>
@@ -166,12 +156,12 @@
     <section id="skills" class="section">
         <h2 class="type-effect">Skills</h2>
         <p class="type-effect"> Languages: Java, SQL, Python, MatLab, CSS, C++, PlatformIO and JavaScript
- <br><br>
- Frameworks: React.js, Linux, QGIS Software, Powershell, Node.js, Bootstrap, Bash, Tailwind, and Express.js
- <br><br>
- Hardware Tools: ESP-32, Arduino, Multisim and Altium Software, VHDL, Verilog
- <br><br>
- Libraries: Pandas, Keras, NumPy, and Matplotlib, Scikit Learn, Seaborn, and Tensorflow </p>
+            <br><br>
+            Frameworks: React.js, Linux, QGIS Software, Powershell, Node.js, Bootstrap, Bash, Tailwind, and Express.js
+            <br><br>
+            Hardware Tools: ESP-32, Arduino, Multisim and Altium Software, VHDL, Verilog
+            <br><br>
+            Libraries: Pandas, Keras, NumPy, and Matplotlib, Scikit Learn, Seaborn, and Tensorflow </p>
     </section>
     <section id="contact" class="section">
         <h2 class="type-effect">Contact</h2>
@@ -179,31 +169,22 @@
     </section>
     
     <script type="module" src="https://unpkg.com/@google/model-viewer@latest/dist/model-viewer.min.js"></script>
-<script>
-    document.addEventListener("scroll", () => {
-        document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
-    });
+    <script>
+        document.addEventListener("scroll", () => {
+            document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
+        });
 
-  document.addEventListener("scroll", () => {
-    document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    let elements = document.querySelectorAll(".type-effect");
-
-    elements.forEach((el) => {
-        if (el.tagName === "H1" || el.tagName === "H2" || el.id === "about-text") {
-            let text = el.innerHTML;  // Preserve <br> tags
-            el.innerHTML = ""; // Clear only for these elements
+        function typeEffect(element) {
+            let text = element.innerHTML;
+            element.innerHTML = "";
 
             let span = document.createElement("span");
             span.classList.add("typing");
-            el.appendChild(span);
+            element.appendChild(span);
 
             let i = 0;
             let typingInterval = setInterval(() => {
                 if (i < text.length) {
-                    // Ensuring <br> is properly rendered
                     if (text[i] === "<") {
                         let endIndex = text.indexOf(">", i);
                         if (endIndex !== -1) {
@@ -216,14 +197,32 @@ document.addEventListener("DOMContentLoaded", () => {
                     i++;
                 } else {
                     clearInterval(typingInterval);
-                    span.style.borderRight = "none"; // Remove blinking cursor after typing
+                    span.style.borderRight = "none";
                 }
             }, 50);
         }
-    });
-});
 
-</script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll(".section");
 
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const elements = entry.target.querySelectorAll(".type-effect");
+                        elements.forEach(el => {
+                            if (!el.classList.contains("typed")) {
+                                typeEffect(el);
+                                el.classList.add("typed");
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
