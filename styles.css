@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('assets/1-5fd5c1c2.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+    font-family: "Courier New", Courier, monospace;
+    overflow-x: hidden;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px 30px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.1em;
+}
+
+.section {
+    padding: 100px 50px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.terminal-container {
+    width: 800px;
+    height: 600px;
+    background-color: #2d0922;
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.terminal-title-bar {
+    background-color: #3c3c3c;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.terminal-title {
+    color: #f8f8f2;
+    font-size: 14px;
+}
+
+.terminal-content {
+    padding: 16px;
+    color: #f8f8f2;
+    font-size: 14px;
+}
+
+.terminal-content p::before {
+    content: "nearhos@linux-desktop:/tmp/portfolio$ ";
+    color: #50fa7b;
+}
+
+.projects-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
