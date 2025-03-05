@@ -1,77 +1,200 @@
-body {
-    margin: 0;
-    padding: 0;
-    background-image: url('assets/1-5fd5c1c2.jpg'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #fff;
-    font-family: "Courier New", Courier, monospace;
-    overflow-x: hidden;
-}
+           body {
+                margin: 0;
+                padding: 0;
+                background-image: url('src/1-5fd5c1c2.jpg'); 
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                color: #fff;
+                font-family: "Courier New", Courier, monospace;
+                overflow-x: hidden;
+            }
+            .hero {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                background: rgba(0, 0, 0, 0.5);
+            }
+            .nav {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                padding: 15px 30px;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                background: rgba(0, 0, 0, 0.8);
+            }
+            .nav a {
+                color: #fff;
+                text-decoration: none;
+                margin: 0 10px;
+                font-size: 1.1em;
+            }
+            .section {
+                padding: 100px 50px;
+                text-align: center;
+                background: rgba(0, 0, 0, 0.7);
+            }
+            .projects-grid {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+            }
+            .project-card {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 20px;
+                border-radius: 10px;
+                width: 300px;
+                text-align: left;
+                overflow: hidden;
+            }
+            .model-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 700px;
+            }
+            model-viewer {
+                width: 80%;
+                height: 100%;
+            }
+            #about img {
+                width: 50%;
+                max-width: 600px;
+                border-radius: 20px;
+                display: block;
+                margin: 20px auto;
+            }
+            .green-link {
+                color: #00ff00;
+                text-decoration: none;
+            }
+            .green-link:hover {
+                color: #33ff33;
+                text-decoration: underline;
+            }
+            .typing {
+                overflow: hidden;
+                white-space: nowrap;
+                border-right: 2px solid #fff;
+                display: inline-block;
+                animation: typing 2s steps(30, end) forwards, blink 0.75s step-end infinite;
+            }
+            .terminal-container {
+                width: 800px;
+                height: 600px; /* Increased height to fit content */
+                background-color: #2d0922; /* Dark purple background */
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+                position: absolute; /* Use absolute positioning */
+                top: 50%; /* Move the container down by 50% of the viewport height */
+                left: 50%; /* Move the container right by 50% of the viewport width */
+                transform: translate(-50%, -50%); /* Adjust for the container's own dimensions */
+            }
+    
+            .terminal-title-bar {
+                background-color: #3c3c3c; /* Grey for the title bar */
+                height: 30px;
+                display: flex;
+                align-items: center;
+                padding: 0 12px;
+                border-bottom: 1px solid #2d2d2d;
+            }
+    
+            .terminal-buttons {
+                display: flex;
+                gap: 8px;
+                margin-left: auto; /* Push buttons to the right */
+            }
+    
+            .terminal-button {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+                color: transparent; /* Hide text */
+            }
+    
+            .terminal-button.minimize {
+                background-color: #3c3c3c; /* Grey for minimize button */
+                border: 1px solid #555; /* Add a subtle border */
+            }
+    
+            .terminal-button.minimize::before {
+                content: "−"; /* Minimize icon */
+                color: #fff; /* White icon */
+            }
+    
+            .terminal-button.maximize {
+                background-color: #3c3c3c; /* Grey for maximize button */
+                border: 1px solid #555; /* Add a subtle border */
+            }
+    
+            .terminal-button.maximize::before {
+                content: "□"; /* Maximize icon */
+                color: #fff; /* White icon */
+            }
+    
+            .terminal-button.close {
+                background-color: #ff5f56; /* Red for close button */
+            }
+    
+            .terminal-button.close::before {
+                content: "×"; /* Close icon */
+                color: #000;
+            }
+    
+            .terminal-title {
+                position: absolute; /* Center the text */
+                left: 50%;
+                transform: translateX(-50%);
+                font-weight: bold;
+                color: #f8f8f2; /* Light gray text */
+                font-size: 14px;
+            }
+    
+            .terminal-content {
+                padding: 16px;
+                color: #f8f8f2; /* Light gray text */
+                font-size: 14px;
+                line-height: 1.5;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: calc(100% - 30px); /* Adjust height to account for the title bar */
+                overflow-y: auto; /* Enable vertical scrolling if content overflows */
+            }
+            .terminal-content img {
+                width: 50%; /* Adjust image width */
+                max-width: 300px; /* Limit maximum image width */
+                border-radius: 10px;
+                margin: 10px 0; /* Add margin to separate image from text */
+            }
+    
+    
+            .terminal-content p {
+                margin: 0;
+            }
+    
+            .terminal-content p::before {
+                content: "nearhos@linux-desktop:/tmp/portfolio$ ";
+                color: #50fa7b; /* Green for the prompt */
+            }
+            @keyframes typing {
+                from { width: 0; }
+                to { width: 100%; }
+            }
+            @keyframes blink {
+                from, to { border-color: transparent; }
+                50% { border-color: #fff; }
+            }
 
-.nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 15px 30px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 1.1em;
-}
-
-.section {
-    padding: 100px 50px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7);
-}
-
-.terminal-container {
-    width: 800px;
-    height: 600px;
-    background-color: #2d0922;
-    border-radius: 8px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.terminal-title-bar {
-    background-color: #3c3c3c;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
-}
-
-.terminal-title {
-    color: #f8f8f2;
-    font-size: 14px;
-}
-
-.terminal-content {
-    padding: 16px;
-    color: #f8f8f2;
-    font-size: 14px;
-}
-
-.terminal-content p::before {
-    content: "nearhos@linux-desktop:/tmp/portfolio$ ";
-    color: #50fa7b;
-}
-
-.projects-grid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
