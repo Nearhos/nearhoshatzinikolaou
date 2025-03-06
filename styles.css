@@ -95,9 +95,37 @@ body {
     content: "−";
     color: #fff;
 }
+.model-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+}
 
-.terminal-button.maximize {
-    background-color: #3c3c3c;
+model-viewer {
+    width: 40%;
+    height: 40%;
+}
+
+#about img {
+    width: 50%;
+    max-width: 200px;
+    border-radius: 20px;
+    display: block;
+    margin: 20px auto;
+}
+
+.green-link {
+    color: #00ff00;
+    text-decoration: none;
+}
+
+.green-link:hover {
+    color: #33ff33;
+    text-decoration: underline;
+}
+
+color: #3c3c3c;
     border: 1px solid #555;
 }
 
