@@ -65,7 +65,7 @@
             }
             #about img {
                 width: 50%;
-                max-width: 600px;
+                max-width: 100px;
                 border-radius: 20px;
                 display: block;
                 margin: 20px auto;
