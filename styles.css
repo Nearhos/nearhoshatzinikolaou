@@ -85,17 +85,17 @@
                 display: inline-block;
                 animation: typing 2s steps(30, end) forwards, blink 0.75s step-end infinite;
             }
-            .terminal-container {
-                width: 800px;
-                height: 600px; /* Increased height to fit content */
-                background-color: #2d0922; /* Dark purple background */
-                border-radius: 8px;
-                overflow: hidden;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-                position: absolute; /* Use absolute positioning */
-                top: 50%; /* Move the container down by 50% of the viewport height */
-                left: 50%; /* Move the container right by 50% of the viewport width */
-                transform: translate(-50%, -50%); /* Adjust for the container's own dimensions */
+           .terminal-container {
+               width: 1000px; /* Increased width */
+               height: 600px; /* Increased height to fit content */
+               background-color: #2d0922; /* Dark purple background */
+               border-radius: 8px;
+               overflow: hidden;
+               box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+               position: absolute; /* Use absolute positioning */
+               top: 50%; /* Move the container down by 50% of the viewport height */
+               left: 50%; /* Move the container right by 50% of the viewport width */
+               transform: translate(-50%, -50%); /* Adjust for the container's own dimensions */
             }
     
             .terminal-title-bar {
@@ -174,13 +174,12 @@
                 overflow-y: auto; /* Enable vertical scrolling if content overflows */
             }
             .terminal-content img {
-                width: 50%; /* Adjust image width */
-                max-width: 100px; /* Limit maximum image width */
-                border-radius: 10px;
-                margin: 10px 0; /* Add margin to separate image from text */
-            }
-    
-    
+               width: 30%; /* Adjust image width */
+               max-width: 150px; /* Limit maximum image width */
+               border-radius: 10px;
+               margin: 10px 0; /* Add margin to separate image from text */
+           }
+               
             .terminal-content p {
                 margin: 0;
             }
