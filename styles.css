@@ -183,10 +183,10 @@
                 height: calc(100% - 30px); /* Adjust height to account for the title bar */
                 overflow-y: auto; /* Enable vertical scrolling if content overflows */
             }
-                     .terminal-content img {
+            .terminal-content img {
                width: auto; /* Allow the width to auto-adjust */
-               max-width: 200px; /* Set the max-width to ensure it fits within the container */
-               max-height: 200px; /* Set the max-height to prevent it from being too large */
+               max-width: 400px; /* Set the max-width to ensure it fits within the container */
+               max-height: 400px; /* Set the max-height to prevent it from being too large */
                border-radius: 10px;
                margin: 10px 0; /* Add margin to separate image from text */
              } 
