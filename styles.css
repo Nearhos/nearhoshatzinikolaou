@@ -65,7 +65,7 @@
             }
             #about img {
                 width: 50%;
-                max-width: 100px;
+                max-width: 400px;
                 border-radius: 20px;
                 display: block;
                 margin: 20px auto;
@@ -87,7 +87,7 @@
             }
            .terminal-container {
                width: 1200px; /* Increased width */
-               height: 800px; /* Increased height to fit content */
+               height: 400px; /* Increased height to fit content */
                background-color: #2d0922; /* Dark purple background */
                border-radius: 8px;
                overflow: hidden;
