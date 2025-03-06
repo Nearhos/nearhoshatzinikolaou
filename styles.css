@@ -40,6 +40,7 @@
                 padding: 100px 50px;
                 text-align: center;
                 background: rgba(0, 0, 0, 0.7);
+                padding-bottom: 50px;
             }
             .projects-grid {
                 display: flex;
@@ -97,8 +98,7 @@
                top: 60%; /* Move it down a bit further to avoid overlap with navbar */
                left: 50%;
                transform: translate(-50%, -50%);
-               z-index: 1; /* Lower z-index to ensure it's behind the navbar */
-               padding-bottom: 50px;
+               z-index: 1; /* Lower z-index to ensure it's behind the navbar 
            }
             .terminal-title-bar {
                 background-color: #3c3c3c; /* Grey for the title bar */
