@@ -28,6 +28,7 @@
                 width: 100%;
                 top: 0;
                 background: rgba(0, 0, 0, 0.8);
+                z-index: 2;
             }
             .nav a {
                 color: #fff;
@@ -85,19 +86,19 @@
                 display: inline-block;
                 animation: typing 2s steps(30, end) forwards, blink 0.75s step-end infinite;
             }
-           .terminal-container {
-               width: 1200px; /* Increased width */
-               height: 400px; /* Increased height to fit content */
-               background-color: #2d0922; /* Dark purple background */
+          .terminal-container {
+               width: 1200px;
+               height: 400px;
+               background-color: #2d0922;
                border-radius: 8px;
                overflow: hidden;
                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-               position: absolute; /* Use absolute positioning */
-               top: 50%; /* Move the container down by 50% of the viewport height */
-               left: 50%; /* Move the container right by 50% of the viewport width */
-               transform: translate(-50%, -50%); /* Adjust for the container's own dimensions */
-            }
-    
+               position: absolute;
+               top: 60%; /* Move it down a bit further to avoid overlap with navbar */
+               left: 50%;
+               transform: translate(-50%, -50%);
+               z-index: 1; /* Lower z-index to ensure it's behind the navbar */
+           }
             .terminal-title-bar {
                 background-color: #3c3c3c; /* Grey for the title bar */
                 height: 30px;
