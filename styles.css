@@ -98,6 +98,7 @@
                left: 50%;
                transform: translate(-50%, -50%);
                z-index: 1; /* Lower z-index to ensure it's behind the navbar */
+               padding-bottom: 50px;
            }
             .terminal-title-bar {
                 background-color: #3c3c3c; /* Grey for the title bar */
