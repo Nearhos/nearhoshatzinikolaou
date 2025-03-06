@@ -87,7 +87,7 @@
             }
            .terminal-container {
                width: 1200px; /* Increased width */
-               height: 800px; /* Increased height to fit content */
+               height: 600px; /* Increased height to fit content */
                background-color: #2d0922; /* Dark purple background */
                border-radius: 8px;
                overflow: hidden;
@@ -175,7 +175,7 @@
             }
             .terminal-content img {
                width: 30%; /* Adjust image width */
-               max-width: 150px; /* Limit maximum image width */
+               max-width: 50px; /* Limit maximum image width */
                border-radius: 10px;
                margin: 10px 0; /* Add margin to separate image from text */
            }
