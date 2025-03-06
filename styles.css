@@ -175,7 +175,7 @@
             }
             .terminal-content img {
                 width: 50%; /* Adjust image width */
-                max-width: 300px; /* Limit maximum image width */
+                max-width: 100px; /* Limit maximum image width */
                 border-radius: 10px;
                 margin: 10px 0; /* Add margin to separate image from text */
             }
