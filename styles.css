@@ -86,8 +86,8 @@
                 animation: typing 2s steps(30, end) forwards, blink 0.75s step-end infinite;
             }
            .terminal-container {
-               width: 1000px; /* Increased width */
-               height: 600px; /* Increased height to fit content */
+               width: 1200px; /* Increased width */
+               height: 800px; /* Increased height to fit content */
                background-color: #2d0922; /* Dark purple background */
                border-radius: 8px;
                overflow: hidden;
