@@ -30,6 +30,7 @@ body {
     width: 100%;
     top: 0;
     background: rgba(0, 0, 0, 0.8);
+    z-index: 1000; /* Ensure the nav stays on top */
 }
 
 .nav a {
@@ -95,6 +96,7 @@ body {
     content: "−";
     color: #fff;
 }
+
 .model-container {
     display: flex;
     justify-content: center;
@@ -105,6 +107,7 @@ body {
 model-viewer {
     width: 80%;
     height: 80%;
+    z-index: 10; /* Ensure model-viewer is not hidden behind other elements */
 }
 
 #about img {
@@ -118,6 +121,7 @@ model-viewer {
 .green-link {
     color: #00ff00;
     text-decoration: none;
+    pointer-events: auto; /* Ensure links are clickable */
 }
 
 .green-link:hover {
@@ -125,7 +129,8 @@ model-viewer {
     text-decoration: underline;
 }
 
-color: #3c3c3c;
+.terminal-button.maximize {
+    background-color: #3c3c3c;
     border: 1px solid #555;
 }
 
@@ -160,6 +165,7 @@ color: #3c3c3c;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden; /* Prevent content from overflowing */
 }
 
 .terminal-content img {
@@ -202,3 +208,4 @@ color: #3c3c3c;
     from, to { border-color: transparent; }
     50% { border-color: #fff; }
 }
+
