@@ -119,13 +119,13 @@ model-viewer {
 }
 
 .green-link {
-    color: #FFFFF;
+    color: #FFFFFF;
     text-decoration: none;
     pointer-events: auto; /* Ensure links are clickable */
 }
 
 .green-link:hover {
-    color: #33ff33;
+    color: #FFFFFF;
     text-decoration: underline;
 }
 
