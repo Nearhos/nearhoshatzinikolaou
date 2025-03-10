@@ -127,55 +127,34 @@
             document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
         });
 
-        function typeEffect(element) {
-            let text = element.innerHTML;
-            element.innerHTML = "";
+     function typeEffect(element) {
+    let text = element.innerHTML;
+    element.innerHTML = "";
 
-            let span = document.createElement("span");
-            span.classList.add("typing");
-            element.appendChild(span);
+    let span = document.createElement("span");
+    span.classList.add("typing");
+    element.appendChild(span);
 
-            let i = 0;
-            let typingInterval = setInterval(() => {
-                if (i < text.length) {
-                    if (text[i] === "<") {
-                        let endIndex = text.indexOf(">", i);
-                        if (endIndex !== -1) {
-                            span.innerHTML += text.substring(i, endIndex + 1);
-                            i = endIndex;
-                        }
-                    } else {
-                        span.innerHTML += text[i];
-                    }
-                    i++;
-                } else {
-                    clearInterval(typingInterval);
-                    span.style.borderRight = "none";
+    let i = 0;
+    let typingInterval = setInterval(() => {
+        if (i < text.length) {
+            if (text[i] === "<") {
+                let endIndex = text.indexOf(">", i);
+                if (endIndex !== -1) {
+                    span.innerHTML += text.substring(i, endIndex + 1);
+                    i = endIndex;
                 }
-            }, 50);
+            } else {
+                span.innerHTML += text[i];
+            }
+            i++;
+        } else {
+            clearInterval(typingInterval);
+            span.style.borderRight = "none";
         }
+    }, 50);
+}
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const sections = document.querySelectorAll(".section");
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const elements = entry.target.querySelectorAll(".type-effect");
-                        elements.forEach(el => {
-                            if (!el.classList.contains("typed")) {
-                                typeEffect(el);
-                                el.classList.add("typed");
-                            }
-                        });
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        });
     </script>
 </body>
 
