@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
-
 <body>
     <nav class="nav">
         <a href="#about">About Me</a>
@@ -17,7 +15,6 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
     </nav>
-
     <section id="about" class="section">
         <div class="terminal-container">
             <div class="terminal-title-bar">
@@ -53,57 +50,59 @@
                 <h2 class="type-effect">Projects</h2>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <div class="model-container">
-                            <h2 class="type-effect">Firmware Projects</h2>
-                            <model-viewer src="src/raspberry_pi_3.glb" auto-rotate camera-controls></model-viewer>
-                        </div>
+                    <div class="model-container">
+                        <h2 class="type-effect">Firmware Projects</h2>
+                        <model-viewer src="src/raspberry_pi_3.glb" auto-rotate camera-controls></model-viewer>
+                    </div>
                     </div>
                     <div class="project-card">
-                        <div class="model-container">
-                            <h2 class="type-effect">Data Science and ML Projects</h2>
-                            <model-viewer src="src/sombrero_-_superficie_math.glb" auto-rotate camera-controls></model-viewer>
-                        </div>
+                    <div class="model-container">
+                        <h2 class="type-effect">Data Science and ML Projects</h2>
+                        <model-viewer src="src/sombrero_-_superficie_math.glb" auto-rotate camera-controls></model-viewer>
+                    </div>
                     </div>
                     <div class="project-card">
-                        <div class="model-container">
-                            <h2 class="type-effect">Robotics Projects</h2>
-                            <model-viewer src="src/industrial_robotic_arm.glb" auto-rotate camera-controls></model-viewer>
-                        </div>
+                    <div class="model-container">
+                        <h2 class="type-effect">Robotics Projects</h2>
+                        <model-viewer src="src/industrial_robotic_arm.glb" auto-rotate camera-controls></model-viewer>
+                    </div>
                     </div>
                     <div class="project-card">
-                        <div class="model-container">
-                            <h2 class="type-effect">Neurotech and Biomedical Projects</h2>
-                            <model-viewer src="src/brain_project.glb" auto-rotate camera-controls></model-viewer>
-                        </div>
+                    <div class="model-container">
+                    
+            
+                        <h2 class="type-effect">Neurotech and Biomedical Projects</h2>
+                        <model-viewer src="src/brain_project.glb" auto-rotate camera-controls></model-viewer>
+                    </div>
                     </div>
                 </div>
                 <h2 class="type-effect">All Projects</h2>
                 <div class="projects-grid">
-                    <p class="project-card">
-                        <a href="https://github.com/Nearhos/SeeSureAlpha1.0">
-                            Epilepsee - Binary classification using a support vector machine, achieving a 98% accuracy on test set data
-                        </a>
-                    </p>
-                    <p class="project-card type-effect">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7287552690727927809/" class="green-link">
-                            Lead2LED (UOttaHack VII Winner) - Pen Attachment that turns pencil/pencil writing to e-ink!
-                        </a>
-                    </p>
-                    <p class="project-card type-effect">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7165458108922720256/" class="green-link">
-                            Helping Hand - OpenCV Braille Glove
-                        </a>
-                    </p>
-                </div>
+                   <p class="project-card type-effect"> 
+    <a href="https://github.com/Nearhos/SeeSureAlpha1.0" class="green-link"> 
+        Epilepsee - Binary classification using a support vector machine, achieving a 98% accuracy on test set data
+    </a>
+</p>
+<p class="project-card type-effect">
+    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7287552690727927809/" class="green-link">
+        Lead2LED (UOttaHack VII Winner) - Pen Attachment that turns pencil/pencil writing to e-ink!
+    </a>
+</p>
+<p class="project-card type-effect">
+    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7165458108922720256/" class="green-link">
+        Helping Hand - OpenCV Braille Glove
+    </a>
+</p>
             </div>
         </div>
     </section>
+
+   
 
     <section id="experience" class="section">
         <h2 class="type-effect">Experience</h2>
         <p class="type-effect">Firmware Engineer Intern @ Ziddy Makes - Summer 2024</p>
     </section>
-
     <section id="skills" class="section">
         <h2 class="type-effect">Skills</h2>
         <p class="type-effect"> Languages: Java, SQL, Python, MatLab, CSS, C++, PlatformIO and JavaScript
@@ -112,10 +111,8 @@
             <br><br>
             Hardware Tools: ESP-32, Arduino, Multisim and Altium Software, VHDL, Verilog
             <br><br>
-            Libraries: Pandas, Keras, NumPy, and Matplotlib, Scikit Learn, Seaborn, and Tensorflow
-        </p>
+            Libraries: Pandas, Keras, NumPy, and Matplotlib, Scikit Learn, Seaborn, and Tensorflow </p>
     </section>
-
     <section id="contact" class="section">
         <h2 class="type-effect">Contact</h2>
         <p class="type-effect">Email: nearhos.hatzinikolaou22@gmail.com</p>
@@ -127,35 +124,55 @@
             document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
         });
 
-     function typeEffect(element) {
-    let text = element.innerHTML;
-    element.innerHTML = "";
+        function typeEffect(element) {
+            let text = element.innerHTML;
+            element.innerHTML = "";
 
-    let span = document.createElement("span");
-    span.classList.add("typing");
-    element.appendChild(span);
+            let span = document.createElement("span");
+            span.classList.add("typing");
+            element.appendChild(span);
 
-    let i = 0;
-    let typingInterval = setInterval(() => {
-        if (i < text.length) {
-            if (text[i] === "<") {
-                let endIndex = text.indexOf(">", i);
-                if (endIndex !== -1) {
-                    span.innerHTML += text.substring(i, endIndex + 1);
-                    i = endIndex;
+            let i = 0;
+            let typingInterval = setInterval(() => {
+                if (i < text.length) {
+                    if (text[i] === "<") {
+                        let endIndex = text.indexOf(">", i);
+                        if (endIndex !== -1) {
+                            span.innerHTML += text.substring(i, endIndex + 1);
+                            i = endIndex;
+                        }
+                    } else {
+                        span.innerHTML += text[i];
+                    }
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                    span.style.borderRight = "none";
                 }
-            } else {
-                span.innerHTML += text[i];
-            }
-            i++;
-        } else {
-            clearInterval(typingInterval);
-            span.style.borderRight = "none";
+            }, 50);
         }
-    }, 50);
-}
 
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll(".section");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const elements = entry.target.querySelectorAll(".type-effect");
+                        elements.forEach(el => {
+                            if (!el.classList.contains("typed")) {
+                                typeEffect(el);
+                                el.classList.add("typed");
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
     </script>
 </body>
-
 </html>
