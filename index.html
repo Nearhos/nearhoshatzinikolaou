@@ -76,25 +76,8 @@
                     </div>
                     </div>
                 </div>
-                <h2 class="type-effect">All Projects</h2>
-                <div class="projects-grid">
-                   <p class="project-card type-effect"> 
-    <a href="https://github.com/Nearhos/SeeSureAlpha1.0" class="green-link"> 
-        Epilepsee - Binary classification using a support vector machine, achieving a 98% accuracy on test set data
-    </a>
-</p>
-<p class="project-card type-effect">
-    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7287552690727927809/" class="green-link">
-        Lead2LED (UOttaHack VII Winner) - Pen Attachment that turns pencil/pencil writing to e-ink!
-    </a>
-</p>
-<p class="project-card type-effect">
-    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7165458108922720256/" class="green-link">
-        Helping Hand - OpenCV Braille Glove
-    </a>
-</p>
-            </div>
-        </div>
+<h2 class="type-effect">Selected Works</h2>
+<div class="projects-grid" id="projects-container"></div>
     </section>
 
    
@@ -173,6 +156,49 @@
                 observer.observe(section);
             });
         });
+        var projects = [
+    { name: "Epilepsee - AI-based epilepsy prediction using EEG signals", link: "https://github.com/Nearhos/SeeSureAlpha1.0" },
+    { name: "Lead2LED - Transforming handwriting into e-ink using a pen attachment", link: "https://www.linkedin.com/feed/update/urn:li:activity:7287552690727927809/" },
+    { name: "Helping Hand - AI-powered OpenCV Braille Glove", link: "https://www.linkedin.com/feed/update/urn:li:activity:7165458108922720256/" }
+];
+
+var speed = 50; 
+var delayBetweenProjects = 1000;
+var container = document.getElementById("projects-container");
+
+function createProjectElements() {
+    projects.forEach((_, index) => {
+        let projectDiv = document.createElement("p");
+        projectDiv.className = "project-card type-effect";
+        let projectLink = document.createElement("a");
+        projectLink.className = "green-link";
+        projectLink.id = "project" + index;
+        projectLink.target = "_blank";
+        projectDiv.appendChild(projectLink);
+        container.appendChild(projectDiv);
+    });
+}
+
+function typeWriter(i = 0, j = 0) {
+    if (j >= projects.length) return; // Stop if all projects are typed
+
+    let currentProject = projects[j];
+    let linkElement = document.getElementById("project" + j);
+
+    if (i < currentProject.name.length) {
+        linkElement.href = currentProject.link; // Set link dynamically
+        linkElement.innerHTML += currentProject.name.charAt(i);
+        setTimeout(() => typeWriter(i + 1, j), speed);
+    } else {
+        setTimeout(() => typeWriter(0, j + 1), delayBetweenProjects);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    createProjectElements();
+    setTimeout(() => typeWriter(), 500);
+});
+
     </script>
 </body>
 </html>
