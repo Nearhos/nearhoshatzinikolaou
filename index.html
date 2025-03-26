@@ -172,15 +172,17 @@ var container = document.getElementById("projects-container");
 document.addEventListener("DOMContentLoaded", () => {
     createProjectElements();
     
-    // Start typing effect slightly delayed to ensure projects are created
-    setTimeout(() => {
-        typeWriter(0, 0);
-    }, 200); // Lower delay to start typing faster
+    // Ensure DOM updates before typing starts
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            typeWriter(0, 0);
+        }, 500); // Delay typing slightly to prevent cut-offs
+    });
 });
 
 function createProjectElements() {
     var container = document.getElementById("projects-container");
-    container.innerHTML = ""; // Clear previous elements
+    container.innerHTML = ""; // Clear container before adding projects
 
     projects.forEach((_, index) => {
         let projectDiv = document.createElement("p");
@@ -198,22 +200,27 @@ function createProjectElements() {
 }
 
 function typeWriter(i, j) {
-    if (j >= projects.length) return; // Stop if all projects are typed
+    if (j >= projects.length) return; // Stop when all projects are typed
 
     let currentProject = projects[j];
     let linkElement = document.getElementById("project" + j);
 
-    if (!linkElement) return; // Prevent errors if element is missing
+    if (!linkElement) return; // Ensure element exists
 
-    linkElement.href = currentProject.link; // Set the link before typing
+    linkElement.href = currentProject.link; // Set link before typing
 
-    if (i < currentProject.name.length) {
-        linkElement.textContent += currentProject.name.charAt(i);
-        setTimeout(() => typeWriter(i + 1, j), 30); // Lower delay to 30ms per character
-    } else {
-        setTimeout(() => typeWriter(0, j + 1), 500); // Move to next project with a short delay
+    function typeCharacter() {
+        if (i < currentProject.name.length) {
+            linkElement.textContent += currentProject.name.charAt(i);
+            setTimeout(() => typeCharacter(i + 1, j), 30); // Typing speed: 30ms per character
+        } else {
+            setTimeout(() => typeWriter(0, j + 1), 500); // Delay before typing the next project
+        }
     }
+
+    typeCharacter(i, j); // Start typing the first character
 }
+
     </script>
 </body>
 </html>
