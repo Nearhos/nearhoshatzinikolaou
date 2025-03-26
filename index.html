@@ -182,28 +182,30 @@ function createProjectElements() {
     });
 }
 
-function typeWriter(i = 0, j = 0) {
+document.addEventListener("DOMContentLoaded", () => {
+    createProjectElements();
+    setTimeout(() => {
+        typeWriter(0, 0);
+    }, 500); // Delay to ensure projects are created before typing starts
+});
+
+async function typeWriter(i = 0, j = 0) {
     if (j >= projects.length) return; // Stop if all projects are typed
 
     let currentProject = projects[j];
     let linkElement = document.getElementById("project" + j);
+    
+    linkElement.href = currentProject.link; // Ensure the link is set before typing starts
+    linkElement.textContent = ""; // Reset content
 
-    if (i < currentProject.name.length) {
-        linkElement.href = currentProject.link; // Set link dynamically
-        linkElement.innerHTML += currentProject.name.charAt(i);
-        setTimeout(() => typeWriter(i + 1, j), speed);
-    } else {
-        setTimeout(() => typeWriter(0, j + 1), delayBetweenProjects);
+    for (let char of currentProject.name) {
+        linkElement.textContent += char;
+        await new Promise(resolve => setTimeout(resolve, speed));
     }
+
+    await new Promise(resolve => setTimeout(resolve, delayBetweenProjects));
+    typeWriter(0, j + 1); // Move to next project
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    createProjectElements();
-    setTimeout(() => {
-        typeWriter();
-    }, 100);  // Slight delay to ensure elements are in the DOM
-});
-
 
     </script>
 </body>
