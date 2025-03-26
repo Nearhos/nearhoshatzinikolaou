@@ -69,18 +69,16 @@
                     </div>
                     <div class="project-card">
                     <div class="model-container">
-                    
-            
                         <h2 class="type-effect">Neurotech and Biomedical Projects</h2>
                         <model-viewer src="src/brain_project.glb" auto-rotate camera-controls></model-viewer>
                     </div>
                     </div>
                 </div>
-<h2 class="type-effect">Selected Works</h2>
-<div class="projects-grid" id="projects-container"></div>
+                <h2 class="type-effect">Selected Works</h2>
+                <div class="projects-grid" id="projects-container"></div>
+            </div>
+        </div>
     </section>
-
-   
 
     <section id="experience" class="section">
         <h2 class="type-effect">Experience</h2>
@@ -107,7 +105,62 @@
             document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
         });
 
+        var projects = [
+            { name: "Epilepsee - Built models using NumPy and Pandas in Python to classify seizure vs non-seizure data with a highest accuracy rate of 98.48% using an SVM model.", link: "https://github.com/Nearhos/SeeSureAlpha1.0" },
+            { name: "Lead2LED - Transforming handwriting into e-ink using a pen attachment using Xiao MCU", link: "https://www.linkedin.com/feed/update/urn:li:activity:7287552690727927809/" },
+            { name: "Helping Hand - OpenCV Text to Braille Glove using Arduino", link: "https://www.linkedin.com/feed/update/urn:li:activity:7165458108922720256/" },
+            { name: "Tempasure - An LSTM-based temperature prediction model that forecasts future temperatures using historical climate data from the Jena Climate Dataset.", link: "https://github.com/Nearhos/Tempasure/blob/main/tempasure.ipynb" },
+            { name: "DieSEEse - Implemented NLP to extract key symptoms from EHR data for disease prediction. Developed a Random Forest Classifier trained on TF-IDF vectorized symptom descriptions. Achieved 89% accuracy on the training dataset for disease classification.", link: "https://github.com/Nearhos/nlpdieaseprediction/blob/main/dieaseprediction.py" },
+            { name: "Waiter2Go! - Implemented KMeans clustering to categorize waiters into performance tiers and LSTM models to predict future tipping trends. ", link: "https://github.com/Nearhos/Waiter2go-" }
+        ];
+
+        function createProjectElements() {
+            var container = document.getElementById("projects-container");
+            container.innerHTML = ""; // Clear previous elements
+
+            projects.forEach((_, index) => {
+                let projectDiv = document.createElement("p");
+                projectDiv.className = "project-card";
+                
+                let projectLink = document.createElement("a");
+                projectLink.className = "green-link type-effect";
+                projectLink.id = "project" + index;
+                projectLink.target = "_blank";
+                
+                projectDiv.appendChild(projectLink);
+                container.appendChild(projectDiv);
+            });
+        }
+
         function typeEffect(element) {
+            // Check if this is a project element
+            const isProjectElement = element.classList.contains('green-link') && 
+                                   element.id.startsWith('project');
+            
+            if (isProjectElement) {
+                // Special handling for project elements
+                const projectIndex = parseInt(element.id.replace('project', '')) || 0;
+                const currentProject = projects[projectIndex];
+                
+                if (currentProject && !element.classList.contains("typed")) {
+                    let i = 0;
+                    element.innerHTML = ''; // Clear existing content
+                    element.href = currentProject.link; // Set link
+                    
+                    const typingInterval = setInterval(() => {
+                        if (i < currentProject.name.length) {
+                            element.innerHTML += currentProject.name.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typingInterval);
+                            element.classList.add("typed");
+                        }
+                    }, 30);
+                }
+                return;
+            }
+            
+            // Original typeEffect for non-project elements
             let text = element.innerHTML;
             element.innerHTML = "";
 
@@ -131,77 +184,31 @@
                 } else {
                     clearInterval(typingInterval);
                     span.style.borderRight = "none";
+                    element.classList.add("typed");
                 }
             }, 50);
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            const sections = document.querySelectorAll(".section");
-
+            // Create project elements immediately
+            createProjectElements();
+            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const elements = entry.target.querySelectorAll(".type-effect");
+                        const elements = entry.target.querySelectorAll(".type-effect:not(.typed)");
                         elements.forEach(el => {
-                            if (!el.classList.contains("typed")) {
-                                typeEffect(el);
-                                el.classList.add("typed");
-                            }
+                            typeEffect(el);
                         });
                     }
                 });
             }, { threshold: 0.5 });
 
-            sections.forEach(section => {
+            // Observe all sections
+            document.querySelectorAll(".section").forEach(section => {
                 observer.observe(section);
             });
         });
-        var projects = [
-    { name: "Epilepsee - Built models using NumPy and Pandas in Python to classify seizure vs non-seizure data with a highest accuracy rate of 98.48% using an SVM model.", link: "https://github.com/Nearhos/SeeSureAlpha1.0" },
-    { name: "Lead2LED - Transforming handwriting into e-ink using a pen attachment using Xiao MCU", link: "https://www.linkedin.com/feed/update/urn:li:activity:7287552690727927809/" },
-    { name: "Helping Hand - OpenCV Text to Braille Glove using Arduino", link: "https://www.linkedin.com/feed/update/urn:li:activity:7165458108922720256/" },
-    { name: "Tempasure - An LSTM-based temperature prediction model that forecasts future temperatures using historical climate data from the Jena Climate Dataset.", link: "https://github.com/Nearhos/Tempasure/blob/main/tempasure.ipynb" },
-    { name: "DieSEEse - Implemented NLP to extract key symptoms from EHR data for disease prediction. Developed a Random Forest Classifier trained on TF-IDF vectorized symptom descriptions. Achieved 89% accuracy on the training dataset for disease classification.", link: "https://github.com/Nearhos/nlpdieaseprediction/blob/main/dieaseprediction.py" },
-    { name: "Waiter2Go! - Implemented KMeans clustering to categorize waiters into performance tiers and LSTM models to predict future tipping trends. ", link: "https://github.com/Nearhos/Waiter2go-" }
-];
-
-var speed = 50; 
-var delayBetweenProjects = 1000;
-var container = document.getElementById("projects-container");
-
-function createProjectElements() {
-    projects.forEach((_, index) => {
-        let projectDiv = document.createElement("p");
-        projectDiv.className = "project-card type-effect";
-        let projectLink = document.createElement("a");
-        projectLink.className = "green-link";
-        projectLink.id = "project" + index;
-        projectLink.target = "_blank";
-        projectDiv.appendChild(projectLink);
-        container.appendChild(projectDiv);
-    });
-}
-
-function typeWriter(i = 0, j = 0) {
-    if (j >= projects.length) return; // Stop if all projects are typed
-
-    let currentProject = projects[j];
-    let linkElement = document.getElementById("project" + j);
-
-    if (i < currentProject.name.length) {
-        linkElement.href = currentProject.link; // Set link dynamically
-        linkElement.innerHTML += currentProject.name.charAt(i);
-        setTimeout(() => typeWriter(i + 1, j), speed);
-    } else {
-        setTimeout(() => typeWriter(0, j + 1), delayBetweenProjects);
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    createProjectElements();
-    setTimeout(() => typeWriter(), 500);
-});
-
     </script>
 </body>
 </html>
