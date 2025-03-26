@@ -156,64 +156,77 @@
                 observer.observe(section);
             });
         });
-        var projects = [
-    { name: "Epilepsee - Built models using NumPy and Pandas in Python to classify seizure vs non-seizure data with a highest accuracy rate of 98.48% using an SVM model.", link: "https://github.com/Nearhos/SeeSureAlpha1.0" },
-    { name: "Lead2LED - Transforming handwriting into e-ink using a pen attachment using Xiao MCU", link: "https://www.linkedin.com/feed/update/urn:li:activity:7287552690727927809/" },
-    { name: "Helping Hand - OpenCV Text to Braille Glove using Arduino", link: "https://www.linkedin.com/feed/update/urn:li:activity:7165458108922720256/" },
-    { name: "Tempasure - An LSTM-based temperature prediction model that forecasts future temperatures using historical climate data from the Jena Climate Dataset.", link: "https://github.com/Nearhos/Tempasure/blob/main/tempasure.ipynb" },
-    { name: "DieSEEse - Implemented NLP to extract key symptoms from EHR data for disease prediction. Developed a Random Forest Classifier trained on TF-IDF vectorized symptom descriptions. Achieved 89% accuracy on the training dataset for disease classification.", link: "https://github.com/Nearhos/nlpdieaseprediction/blob/main/dieaseprediction.py" },
-    { name: "Waiter2Go! - Implemented KMeans clustering to categorize waiters into performance tiers and LSTM models to predict future tipping trends. ", link: "https://github.com/Nearhos/Waiter2go-" }
-];
+    var projects = [
+        { name: "Epilepsee - Built models using NumPy and Pandas in Python to classify seizure vs non-seizure data with a highest accuracy rate of 98.48% using an SVM model.", link: "https://github.com/Nearhos/SeeSureAlpha1.0" },
+        { name: "Lead2LED - Transforming handwriting into e-ink using a pen attachment using Xiao MCU", link: "https://www.linkedin.com/feed/update/urn:li:activity:7287552690727927809/" },
+        { name: "Helping Hand - OpenCV Text to Braille Glove using Arduino", link: "https://www.linkedin.com/feed/update/urn:li:activity:7165458108922720256/" },
+        { name: "Tempasure - An LSTM-based temperature prediction model that forecasts future temperatures using historical climate data from the Jena Climate Dataset.", link: "https://github.com/Nearhos/Tempasure/blob/main/tempasure.ipynb" },
+        { name: "DieSEEse - Implemented NLP to extract key symptoms from EHR data for disease prediction. Developed a Random Forest Classifier trained on TF-IDF vectorized symptom descriptions. Achieved 89% accuracy on the training dataset for disease classification.", link: "https://github.com/Nearhos/nlpdieaseprediction/blob/main/dieaseprediction.py" },
+        { name: "Waiter2Go! - Implemented KMeans clustering to categorize waiters into performance tiers and LSTM models to predict future tipping trends. ", link: "https://github.com/Nearhos/Waiter2go-" }
+    ];
 
-var speed = 50; 
-var delayBetweenProjects = 1000;
-var container = document.getElementById("projects-container");
-document.addEventListener("DOMContentLoaded", () => {
-    createProjectElements();
-    
-    // Start typing effect slightly delayed to ensure projects are created
-    setTimeout(() => {
-        typeWriter(0, 0);
-    }, 200); // Lower delay to start typing faster
-});
+    document.addEventListener("DOMContentLoaded", () => {
+        createProjectElements();
+        
+        // Create an observer to trigger typing when projects section is in view
+        const projectsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Start typing only when projects section is visible
+                    typeWriter(0, 0);
+                    projectsObserver.unobserve(entry.target); // Stop observing after triggering
+                }
+            });
+        }, { threshold: 0.5 });
 
-function createProjectElements() {
-    var container = document.getElementById("projects-container");
-    container.innerHTML = ""; // Clear previous elements
-
-    projects.forEach((_, index) => {
-        let projectDiv = document.createElement("p");
-        projectDiv.className = "project-card type-effect";
-
-        let projectLink = document.createElement("a");
-        projectLink.className = "green-link";
-        projectLink.id = "project" + index;
-        projectLink.target = "_blank";
-        projectLink.textContent = ""; // Ensure it's empty initially
-
-        projectDiv.appendChild(projectLink);
-        container.appendChild(projectDiv);
+        // Observe the projects section
+        const projectsSection = document.getElementById("projects");
+        if (projectsSection) {
+            projectsObserver.observe(projectsSection);
+        }
     });
-}
 
-function typeWriter(i, j) {
-    if (j >= projects.length) return; // Stop if all projects are typed
+    function createProjectElements() {
+        var container = document.getElementById("projects-container");
+        container.innerHTML = ""; // Clear previous elements
 
-    let currentProject = projects[j];
-    let linkElement = document.getElementById("project" + j);
+        projects.forEach((_, index) => {
+            let projectDiv = document.createElement("p");
+            projectDiv.className = "project-card type-effect";
 
-    if (!linkElement) return; // Prevent errors if element is missing
+            let projectLink = document.createElement("a");
+            projectLink.className = "green-link";
+            projectLink.id = "project" + index;
+            projectLink.target = "_blank";
+            projectLink.textContent = ""; // Ensure it's empty initially
 
-    linkElement.href = currentProject.link; // Set the link before typing
-
-    if (i < currentProject.name.length) {
-        linkElement.textContent += currentProject.name.charAt(i);
-        setTimeout(() => typeWriter(i + 1, j), 30); // Lower delay to 30ms per character
-    } else {
-        setTimeout(() => typeWriter(0, j + 1), 500); // Move to next project with a short delay
+            projectDiv.appendChild(projectLink);
+            container.appendChild(projectDiv);
+        });
     }
-}
 
+    function typeWriter(i, j) {
+        if (j >= projects.length) return; // Stop if all projects are typed
+
+        let currentProject = projects[j];
+        let linkElement = document.getElementById("project" + j);
+
+        if (!linkElement) {
+            // If element doesn't exist, move to next project
+            setTimeout(() => typeWriter(0, j + 1), 0);
+            return;
+        }
+
+        linkElement.href = currentProject.link; // Set the link before typing
+
+        if (i < currentProject.name.length) {
+            linkElement.textContent += currentProject.name.charAt(i);
+            setTimeout(() => typeWriter(i + 1, j), 30);
+        } else {
+            // Move to next project with a short delay
+            setTimeout(() => typeWriter(0, j + 1), 100);
+        }
+    }
     </script>
 </body>
 </html>
