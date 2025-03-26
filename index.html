@@ -199,8 +199,11 @@ function typeWriter(i = 0, j = 0) {
 
 document.addEventListener("DOMContentLoaded", () => {
     createProjectElements();
-    setTimeout(() => typeWriter(), 500);
+    setTimeout(() => {
+        typeWriter();
+    }, 100);  // Slight delay to ensure elements are in the DOM
 });
+
 
     </script>
 </body>
