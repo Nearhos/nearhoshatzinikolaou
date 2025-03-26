@@ -168,16 +168,13 @@
 var speed = 50; 
 var delayBetweenProjects = 1000;
 var container = document.getElementById("projects-container");
-
 document.addEventListener("DOMContentLoaded", () => {
     createProjectElements();
-    
-    // Ensure DOM updates before typing starts
-    requestAnimationFrame(() => {
-        setTimeout(() => {
-            typeWriter(0, 0);
-        }, 500); // Delay typing slightly to prevent cut-offs
-    });
+
+    // Wait for DOM updates before starting the typing effect
+    setTimeout(() => {
+        typeWriter(0, 0);
+    }, 500);
 });
 
 function createProjectElements() {
@@ -192,7 +189,7 @@ function createProjectElements() {
         projectLink.className = "green-link";
         projectLink.id = "project" + index;
         projectLink.target = "_blank";
-        projectLink.textContent = ""; // Ensure it's empty initially
+        projectLink.textContent = ""; // Start empty
 
         projectDiv.appendChild(projectLink);
         container.appendChild(projectDiv);
@@ -200,27 +197,28 @@ function createProjectElements() {
 }
 
 function typeWriter(i, j) {
-    if (j >= projects.length) return; // Stop when all projects are typed
+    if (j >= projects.length) return; // Stop when all projects are done
 
     let currentProject = projects[j];
     let linkElement = document.getElementById("project" + j);
 
-    if (!linkElement) return; // Ensure element exists
+    if (!linkElement) return; // Prevent errors if missing element
 
     linkElement.href = currentProject.link; // Set link before typing
 
     function typeCharacter() {
         if (i < currentProject.name.length) {
             linkElement.textContent += currentProject.name.charAt(i);
-            setTimeout(() => typeCharacter(i + 1, j), 30); // Typing speed: 30ms per character
+            i++; // Move to the next letter
+            setTimeout(typeCharacter, 30); // Typing speed: 30ms per character
         } else {
-            setTimeout(() => typeWriter(0, j + 1), 500); // Delay before typing the next project
+            // Move to the next project after finishing this one
+            setTimeout(() => typeWriter(0, j + 1), 500);
         }
     }
 
-    typeCharacter(i, j); // Start typing the first character
+    typeCharacter(); // Start typing
 }
-
     </script>
 </body>
 </html>
