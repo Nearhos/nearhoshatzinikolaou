@@ -171,16 +171,16 @@ var container = document.getElementById("projects-container");
 
 document.addEventListener("DOMContentLoaded", () => {
     createProjectElements();
-
-    // Ensure project elements exist before typing starts
+    
+    // Start typing effect slightly delayed to ensure projects are created
     setTimeout(() => {
         typeWriter(0, 0);
-    }, 500); // Short delay to let the DOM update
+    }, 200); // Lower delay to start typing faster
 });
 
 function createProjectElements() {
     var container = document.getElementById("projects-container");
-    container.innerHTML = ""; // Ensure it's empty before adding elements
+    container.innerHTML = ""; // Clear previous elements
 
     projects.forEach((_, index) => {
         let projectDiv = document.createElement("p");
@@ -190,36 +190,30 @@ function createProjectElements() {
         projectLink.className = "green-link";
         projectLink.id = "project" + index;
         projectLink.target = "_blank";
+        projectLink.textContent = ""; // Ensure it's empty initially
 
         projectDiv.appendChild(projectLink);
         container.appendChild(projectDiv);
     });
 }
 
-function typeWriter(i = 0, j = 0) {
+function typeWriter(i, j) {
     if (j >= projects.length) return; // Stop if all projects are typed
 
     let currentProject = projects[j];
     let linkElement = document.getElementById("project" + j);
-    
-    if (!linkElement) return; // Ensure the element exists
 
-    linkElement.href = currentProject.link; // Set the link
-    linkElement.textContent = ""; // Clear text before typing starts
+    if (!linkElement) return; // Prevent errors if element is missing
 
-    function typeNextChar() {
-        if (i < currentProject.name.length) {
-            linkElement.textContent += currentProject.name.charAt(i);
-            i++;
-            setTimeout(typeNextChar, speed); // Type next character
-        } else {
-            setTimeout(() => typeWriter(0, j + 1), delayBetweenProjects); // Move to next project
-        }
+    linkElement.href = currentProject.link; // Set the link before typing
+
+    if (i < currentProject.name.length) {
+        linkElement.textContent += currentProject.name.charAt(i);
+        setTimeout(() => typeWriter(i + 1, j), 30); // Lower delay to 30ms per character
+    } else {
+        setTimeout(() => typeWriter(0, j + 1), 500); // Move to next project with a short delay
     }
-
-    typeNextChar(); // Start typing effect for the current project
 }
-
     </script>
 </body>
 </html>
