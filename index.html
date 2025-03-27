@@ -99,13 +99,17 @@
         <p class="type-effect">Email: nearhos.hatzinikolaou22@gmail.com</p>
     </section>
 
+
     <script type="module" src="https://unpkg.com/@google/model-viewer@latest/dist/model-viewer.min.js"></script>
+    
+    <!-- NEW IMPROVED SCRIPT - ADDED AFTER YOUR ORIGINAL CONTENT -->
     <script>
+        // Improved type-on-view implementation that works with your existing HTML
         document.addEventListener("scroll", () => {
             document.querySelector(".nav").style.background = "rgba(0, 0, 0, 0.9)";
         });
 
-        var projects = [
+        const projects = [
             { name: "Epilepsee - Built models using NumPy and Pandas in Python to classify seizure vs non-seizure data with a highest accuracy rate of 98.48% using an SVM model.", link: "https://github.com/Nearhos/SeeSureAlpha1.0" },
             { name: "Lead2LED - Transforming handwriting into e-ink using a pen attachment using Xiao MCU", link: "https://www.linkedin.com/feed/update/urn:li:activity:7287552690727927809/" },
             { name: "Helping Hand - OpenCV Text to Braille Glove using Arduino", link: "https://www.linkedin.com/feed/update/urn:li:activity:7165458108922720256/" },
@@ -115,14 +119,15 @@
         ];
 
         function createProjectElements() {
-            var container = document.getElementById("projects-container");
+            const container = document.getElementById("projects-container");
+            if (!container) return;
+            
             container.innerHTML = "";
-
             projects.forEach((_, index) => {
-                let projectDiv = document.createElement("p");
+                const projectDiv = document.createElement("p");
                 projectDiv.className = "project-card";
                 
-                let projectLink = document.createElement("a");
+                const projectLink = document.createElement("a");
                 projectLink.className = "green-link type-effect";
                 projectLink.id = "project" + index;
                 projectLink.target = "_blank";
@@ -133,28 +138,31 @@
         }
 
         function typeEffect(element) {
-            const isProjectElement = element.classList.contains('green-link') && 
-                                   element.id.startsWith('project');
+            if (element.classList.contains("typed") || element.classList.contains("typing-active")) {
+                return;
+            }
+
+            element.classList.add("typing-active");
+            
+            const isProjectElement = element.classList.contains('green-link') && element.id.startsWith('project');
             
             if (isProjectElement) {
                 const projectIndex = parseInt(element.id.replace('project', '')) || 0;
                 const currentProject = projects[projectIndex];
                 
-                if (currentProject && !element.classList.contains("typed")) {
+                if (currentProject) {
                     let i = 0;
                     element.innerHTML = '';
                     element.href = currentProject.link;
                     
-                    const textNode = document.createTextNode("");
-                    element.appendChild(textNode);
-                    
                     const typeNextCharacter = () => {
                         if (i < currentProject.name.length) {
-                            textNode.nodeValue += currentProject.name.charAt(i);
+                            element.textContent += currentProject.name.charAt(i);
                             i++;
                             requestAnimationFrame(typeNextCharacter);
                         } else {
                             element.classList.add("typed");
+                            element.classList.remove("typing-active");
                         }
                     };
                     
@@ -163,11 +171,11 @@
                 return;
             }
             
-            // Original typeEffect for non-project elements
-            let text = element.innerHTML;
+            // For non-project elements
+            const text = element.innerHTML;
             element.innerHTML = "";
 
-            let span = document.createElement("span");
+            const span = document.createElement("span");
             span.classList.add("typing");
             element.appendChild(span);
 
@@ -175,7 +183,7 @@
             const typeCharacter = () => {
                 if (i < text.length) {
                     if (text[i] === "<") {
-                        let endIndex = text.indexOf(">", i);
+                        const endIndex = text.indexOf(">", i);
                         if (endIndex !== -1) {
                             span.innerHTML += text.substring(i, endIndex + 1);
                             i = endIndex;
@@ -188,56 +196,71 @@
                 } else {
                     span.style.borderRight = "none";
                     element.classList.add("typed");
+                    element.classList.remove("typing-active");
                 }
             };
             
             typeCharacter();
         }
 
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight + 100) &&
+                rect.bottom >= -100
+            );
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             createProjectElements();
             
+            // Setup IntersectionObserver
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const elements = entry.target.querySelectorAll(".type-effect:not(.typed)");
+                        const elements = entry.target.querySelectorAll?.(".type-effect:not(.typing-active):not(.typed)") || [];
                         elements.forEach(el => {
-                            if (!el.classList.contains("typing-active")) {
-                                el.classList.add("typing-active");
+                            if (isElementInViewport(el)) {
                                 typeEffect(el);
                             }
                         });
+                        
+                        if (entry.target.classList?.contains("type-effect") && 
+                            !entry.target.classList.contains("typing-active") && 
+                            !entry.target.classList.contains("typed")) {
+                            typeEffect(entry.target);
+                        }
                     }
                 });
-            }, { 
-                threshold: 0.1,
-                rootMargin: "0px 0px 100px 0px"
-            });
+            }, { threshold: 0.05, rootMargin: "100px 0px 100px 0px" });
 
+            // Observe all sections and type-effect elements
             document.querySelectorAll(".section, .type-effect").forEach(element => {
                 observer.observe(element);
             });
 
-            let scrollTimeout;
-            window.addEventListener('scroll', () => {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    document.querySelectorAll(".type-effect:not(.typed)").forEach(el => {
-                        if (isElementInViewport(el) && !el.classList.contains("typing-active")) {
-                            el.classList.add("typing-active");
-                            typeEffect(el);
-                        }
-                    });
-                }, 300);
-            });
+            // Initial check after load
+            setTimeout(() => {
+                document.querySelectorAll(".type-effect:not(.typing-active):not(.typed)").forEach(el => {
+                    if (isElementInViewport(el)) {
+                        typeEffect(el);
+                    }
+                });
+            }, 500);
 
-            function isElementInViewport(el) {
-                const rect = el.getBoundingClientRect();
-                return (
-                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.bottom >= 0
-                );
-            }
+            // Backup periodic check
+            const backupCheck = setInterval(() => {
+                const elements = document.querySelectorAll(".type-effect:not(.typing-active):not(.typed)");
+                if (elements.length === 0) {
+                    clearInterval(backupCheck);
+                    return;
+                }
+                elements.forEach(el => {
+                    if (isElementInViewport(el)) {
+                        typeEffect(el);
+                    }
+                });
+            }, 1000);
         });
     </script>
 </body>
