@@ -8,8 +8,96 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-    <!-- All your existing HTML content remains exactly the same -->
-    <!-- ... -->
+    <nav class="nav">
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <section id="about" class="section">
+        <div class="terminal-container">
+            <div class="terminal-title-bar">
+                <div class="terminal-buttons">
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-button close"></div>
+                </div>
+                <span class="terminal-title">nearhos@linux-desktop:/tmp/aboutme</span>
+            </div>
+            <div class="terminal-content">
+                <h1 class="type-effect">Nearhos Hatzinikolaou</h1>
+                <img src="src/1732488187230.jpg" alt="Profile Picture">
+                <h2 class="type-effect">About Me</h2>
+                <p id="about-text" class="type-effect">Hello, I am an Electrical Engineering student at Toronto Metropolitan University.</p>
+                <p id="about-text" class="type-effect">This site is a personal portfolio containing all my past projects.</p>
+                <p id="about-text" class="type-effect">I hope you find them as interesting as I did!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="terminal-container projects-terminal">
+            <div class="terminal-title-bar">
+                <div class="terminal-buttons">
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-button close"></div>
+                </div>
+                <span class="terminal-title">nearhos@linux-desktop:/tmp/projects</span>
+            </div>
+            <div class="terminal-content">
+                <h2 class="type-effect">Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="model-container">
+                            <h2 class="type-effect">Firmware Projects</h2>
+                            <model-viewer src="src/raspberry_pi_3.glb" auto-rotate camera-controls></model-viewer>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="model-container">
+                            <h2 class="type-effect">Data Science and ML Projects</h2>
+                            <model-viewer src="src/sombrero_-_superficie_math.glb" auto-rotate camera-controls></model-viewer>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="model-container">
+                            <h2 class="type-effect">Robotics Projects</h2>
+                            <model-viewer src="src/industrial_robotic_arm.glb" auto-rotate camera-controls></model-viewer>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="model-container">
+                            <h2 class="type-effect">Neurotech and Biomedical Projects</h2>
+                            <model-viewer src="src/brain_project.glb" auto-rotate camera-controls></model-viewer>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="type-effect">Selected Works</h2>
+                <div class="projects-grid" id="projects-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <h2 class="type-effect">Experience</h2>
+        <p class="type-effect">Firmware Engineer Intern @ Ziddy Makes - Summer 2024</p>
+    </section>
+    <section id="skills" class="section">
+        <h2 class="type-effect">Skills</h2>
+        <p class="type-effect"> Languages: Java, SQL, Python, MatLab, CSS, C++, PlatformIO and JavaScript
+            <br><br>
+            Frameworks: React.js, Linux, QGIS Software, Powershell, Node.js, Bootstrap, Bash, Tailwind, and Express.js
+            <br><br>
+            Hardware Tools: ESP-32, Arduino, Multisim and Altium Software, VHDL, Verilog
+            <br><br>
+            Libraries: Pandas, Keras, NumPy, and Matplotlib, Scikit Learn, Seaborn, and Tensorflow </p>
+    </section>
+    <section id="contact" class="section">
+        <h2 class="type-effect">Contact</h2>
+        <p class="type-effect">Email: nearhos.hatzinikolaou22@gmail.com</p>
+    </section>
 
     <script type="module" src="https://unpkg.com/@google/model-viewer@latest/dist/model-viewer.min.js"></script>
     <script>
@@ -18,13 +106,30 @@
         });
 
         var projects = [
-            // Your project data remains the same
-            // ...
+            { name: "Epilepsee - Built models using NumPy and Pandas in Python to classify seizure vs non-seizure data with a highest accuracy rate of 98.48% using an SVM model.", link: "https://github.com/Nearhos/SeeSureAlpha1.0" },
+            { name: "Lead2LED - Transforming handwriting into e-ink using a pen attachment using Xiao MCU", link: "https://www.linkedin.com/feed/update/urn:li:activity:7287552690727927809/" },
+            { name: "Helping Hand - OpenCV Text to Braille Glove using Arduino", link: "https://www.linkedin.com/feed/update/urn:li:activity:7165458108922720256/" },
+            { name: "Tempasure - An LSTM-based temperature prediction model that forecasts future temperatures using historical climate data from the Jena Climate Dataset.", link: "https://github.com/Nearhos/Tempasure/blob/main/tempasure.ipynb" },
+            { name: "DieSEEse - Implemented NLP to extract key symptoms from EHR data for disease prediction. Developed a Random Forest Classifier trained on TF-IDF vectorized symptom descriptions. Achieved 89% accuracy on the training dataset for disease classification.", link: "https://github.com/Nearhos/nlpdieaseprediction/blob/main/dieaseprediction.py" },
+            { name: "Waiter2Go! - Implemented KMeans clustering to categorize waiters into performance tiers and LSTM models to predict future tipping trends.", link: "https://github.com/Nearhos/Waiter2go-" }
         ];
 
         function createProjectElements() {
-            // Your existing implementation
-            // ...
+            var container = document.getElementById("projects-container");
+            container.innerHTML = "";
+
+            projects.forEach((_, index) => {
+                let projectDiv = document.createElement("p");
+                projectDiv.className = "project-card";
+                
+                let projectLink = document.createElement("a");
+                projectLink.className = "green-link type-effect";
+                projectLink.id = "project" + index;
+                projectLink.target = "_blank";
+                
+                projectDiv.appendChild(projectLink);
+                container.appendChild(projectDiv);
+            });
         }
 
         function typeEffect(element) {
@@ -40,7 +145,6 @@
                     element.innerHTML = '';
                     element.href = currentProject.link;
                     
-                    // Use a more reliable typing implementation
                     const textNode = document.createTextNode("");
                     element.appendChild(textNode);
                     
@@ -54,13 +158,12 @@
                         }
                     };
                     
-                    // Start typing immediately but throttle with requestAnimationFrame
                     typeNextCharacter();
                 }
                 return;
             }
             
-            // Original typeEffect for non-project elements with improved reliability
+            // Original typeEffect for non-project elements
             let text = element.innerHTML;
             element.innerHTML = "";
 
@@ -94,13 +197,11 @@
         document.addEventListener("DOMContentLoaded", () => {
             createProjectElements();
             
-            // Improved IntersectionObserver with better thresholds and rootMargin
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const elements = entry.target.querySelectorAll(".type-effect:not(.typed)");
                         elements.forEach(el => {
-                            // Ensure typing starts even if element scrolls out quickly
                             if (!el.classList.contains("typing-active")) {
                                 el.classList.add("typing-active");
                                 typeEffect(el);
@@ -109,16 +210,14 @@
                     }
                 });
             }, { 
-                threshold: 0.1, // Lower threshold to catch elements earlier
-                rootMargin: "0px 0px 100px 0px" // Add 100px bottom margin to trigger earlier
+                threshold: 0.1,
+                rootMargin: "0px 0px 100px 0px"
             });
 
-            // Observe all sections and individual important elements
             document.querySelectorAll(".section, .type-effect").forEach(element => {
                 observer.observe(element);
             });
 
-            // Fallback: Check for any untyped elements after scrolling stops
             let scrollTimeout;
             window.addEventListener('scroll', () => {
                 clearTimeout(scrollTimeout);
@@ -132,7 +231,6 @@
                 }, 300);
             });
 
-            // Helper function to check if element is in viewport
             function isElementInViewport(el) {
                 const rect = el.getBoundingClientRect();
                 return (
