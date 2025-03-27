@@ -50,28 +50,28 @@
                 <h2 class="type-effect">Projects</h2>
                 <div class="projects-grid">
                     <div class="project-card">
-                    <div class="model-container">
-                        <h2 class="type-effect">Firmware Projects</h2>
-                        <model-viewer src="src/raspberry_pi_3.glb" auto-rotate camera-controls></model-viewer>
-                    </div>
-                    </div>
-                    <div class="project-card">
-                    <div class="model-container">
-                        <h2 class="type-effect">Data Science and ML Projects</h2>
-                        <model-viewer src="src/sombrero_-_superficie_math.glb" auto-rotate camera-controls></model-viewer>
-                    </div>
+                        <div class="model-container">
+                            <h2 class="type-effect">Firmware Projects</h2>
+                            <model-viewer src="src/raspberry_pi_3.glb" auto-rotate camera-controls></model-viewer>
+                        </div>
                     </div>
                     <div class="project-card">
-                    <div class="model-container">
-                        <h2 class="type-effect">Robotics Projects</h2>
-                        <model-viewer src="src/industrial_robotic_arm.glb" auto-rotate camera-controls></model-viewer>
-                    </div>
+                        <div class="model-container">
+                            <h2 class="type-effect">Data Science and ML Projects</h2>
+                            <model-viewer src="src/sombrero_-_superficie_math.glb" auto-rotate camera-controls></model-viewer>
+                        </div>
                     </div>
                     <div class="project-card">
-                    <div class="model-container">
-                        <h2 class="type-effect">Neurotech and Biomedical Projects</h2>
-                        <model-viewer src="src/brain_project.glb" auto-rotate camera-controls></model-viewer>
+                        <div class="model-container">
+                            <h2 class="type-effect">Robotics Projects</h2>
+                            <model-viewer src="src/industrial_robotic_arm.glb" auto-rotate camera-controls></model-viewer>
+                        </div>
                     </div>
+                    <div class="project-card">
+                        <div class="model-container">
+                            <h2 class="type-effect">Neurotech and Biomedical Projects</h2>
+                            <model-viewer src="src/brain_project.glb" auto-rotate camera-controls></model-viewer>
+                        </div>
                     </div>
                 </div>
                 <h2 class="type-effect">Selected Works</h2>
@@ -111,12 +111,12 @@
             { name: "Helping Hand - OpenCV Text to Braille Glove using Arduino", link: "https://www.linkedin.com/feed/update/urn:li:activity:7165458108922720256/" },
             { name: "Tempasure - An LSTM-based temperature prediction model that forecasts future temperatures using historical climate data from the Jena Climate Dataset.", link: "https://github.com/Nearhos/Tempasure/blob/main/tempasure.ipynb" },
             { name: "DieSEEse - Implemented NLP to extract key symptoms from EHR data for disease prediction. Developed a Random Forest Classifier trained on TF-IDF vectorized symptom descriptions. Achieved 89% accuracy on the training dataset for disease classification.", link: "https://github.com/Nearhos/nlpdieaseprediction/blob/main/dieaseprediction.py" },
-            { name: "Waiter2Go! - Implemented KMeans clustering to categorize waiters into performance tiers and LSTM models to predict future tipping trends. ", link: "https://github.com/Nearhos/Waiter2go-" }
+            { name: "Waiter2Go! - Implemented KMeans clustering to categorize waiters into performance tiers and LSTM models to predict future tipping trends.", link: "https://github.com/Nearhos/Waiter2go-" }
         ];
 
         function createProjectElements() {
             var container = document.getElementById("projects-container");
-            container.innerHTML = ""; // Clear previous elements
+            container.innerHTML = "";
 
             projects.forEach((_, index) => {
                 let projectDiv = document.createElement("p");
@@ -138,24 +138,29 @@
                                    element.id.startsWith('project');
             
             if (isProjectElement) {
-                // Special handling for project elements
                 const projectIndex = parseInt(element.id.replace('project', '')) || 0;
                 const currentProject = projects[projectIndex];
                 
                 if (currentProject && !element.classList.contains("typed")) {
                     let i = 0;
-                    element.innerHTML = ''; // Clear existing content
-                    element.href = currentProject.link; // Set link
+                    element.innerHTML = '';
+                    element.href = currentProject.link;
                     
-                    const typingInterval = setInterval(() => {
+                    // Create a text node to append characters to
+                    const textNode = document.createTextNode("");
+                    element.appendChild(textNode);
+                    
+                    const typeNextCharacter = () => {
                         if (i < currentProject.name.length) {
-                            element.innerHTML += currentProject.name.charAt(i);
+                            textNode.nodeValue += currentProject.name.charAt(i);
                             i++;
+                            setTimeout(typeNextCharacter, 30); // 30ms delay between characters
                         } else {
-                            clearInterval(typingInterval);
                             element.classList.add("typed");
                         }
-                    }, 30);
+                    };
+                    
+                    typeNextCharacter();
                 }
                 return;
             }
@@ -190,7 +195,6 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            // Create project elements immediately
             createProjectElements();
             
             const observer = new IntersectionObserver((entries) => {
@@ -204,7 +208,6 @@
                 });
             }, { threshold: 0.5 });
 
-            // Observe all sections
             document.querySelectorAll(".section").forEach(section => {
                 observer.observe(section);
             });
