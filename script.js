@@ -108,6 +108,12 @@ function isElementInViewport(el) {
 document.addEventListener("DOMContentLoaded", () => {
     createProjectElements();
     
+    // Contact form handling
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactForm);
+    }
+    
     // Setup IntersectionObserver
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -155,4 +161,70 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }, 1000);
-}); 
+});
+
+// Contact form handling function
+function handleContactForm(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+    
+    // Create mailto link with form data
+    const mailtoLink = `mailto:nearhos.hatzinikolaou22@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+    
+    // Open default email client
+    window.location.href = mailtoLink;
+    
+    // Show success message
+    showNotification('Email client opened! Please send the message.', 'success');
+    
+    // Reset form
+    event.target.reset();
+}
+
+// Notification function
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    // Style the notification
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#50fa7b' : '#ff79c6'};
+        color: ${type === 'success' ? '#000' : '#fff'};
+        padding: 15px 20px;
+        border-radius: 5px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 14px;
+        z-index: 10000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 5000);
+} 
